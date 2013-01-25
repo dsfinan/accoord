@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"  
+		xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+		xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:jsp="http://java.sun.com/JSP/Page" 
+		xmlns:maps="urn:jsptagdir:/WEB-INF/tags/map" 
+		xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:sec="http://www.springframework.org/security/tags" 
+		xmlns:spring="http://www.springframework.org/tags" 
+		xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+<c:if test="${pageContext['request'].userPrincipal != null}">    
+    	<sec:authentication property="principal.userObject.id" var="userId"/>
+    	<sec:authentication property="principal.userObject.firstname" var="userFirstName"/>
+    	<sec:authentication property="principal.userObject.firstname" var="userLastName"/>
+</c:if>
+    
+    	<!--  Set the event to session variables, every visit resets the variable -->
+    	<c:set scope="session" value="${event}" var="sessionEvent"/>
+		<c:set scope="session" value="${event.lat}, ${event.lng}" var="toCoveragelatlng"/>
+		<c:set scope="session" value="${event.zoomlevel}" var="toCoverageZoom"/> 
+    	<c:set scope="session" value="${event.name}" var="toCoverageEventName"/>
+    	<c:set scope="session" value="${event.id}" var="sessionEventId"/>
+    	
+ 
+
+     	<c:set value="/assessmentareas?form" var="assessmentAreaPath"/>
+		<spring:url value="${assessmentAreaPath}" var="create_assessmentarea_url"/>
+		
+		<c:set value="/serviceareas?form" var="serviceAreaPath"/>
+		<spring:url value="${serviceAreaPath}" var="create_servicearea_url"/>
+
+     	<c:set value="/securityincidents?form" var="securityIncidentPath"/>
+		<spring:url value="${securityIncidentPath}" var="create_security_url"/>
+
+    	<spring:url value="/" var="system_url"/>
+
+
+<script type="text/javascript">
+
+
+// set the inital map variables for full scope
+var map;
+var latlng = new google.maps.LatLng(${event.lat}, ${event.lng});
+var zoom = ${event.zoomlevel};
+var eventId = ${event.id};
+var eventName = '${event.name}';
+var assessmentPaths = [];
+var servicePaths = [];
+var securityMarkers = [];
+var rootPath = "${rootPath}";
+
+
+var msgForm = document.getElementById('msgForm');
+
+$(document).ready(function(){
+	
+	
+	
+	//hide the msg form
+	$("#msgDiv").hide();
+
+
+	//messaging...build text area and submit elements dynamicly
+	
+	    messageTextArea = document.createElement("input");
+	  	messageTextArea.setAttribute("name", "msg");
+		messageTextArea.setAttribute("id", "msg");
+		messageTextArea.setAttribute("cols", "100");
+		//messageTextArea. add text
+	  	messagesubmit = document.createElement("input");
+	  	messagesubmit.setAttribute("name", "submitPost");
+	  	messagesubmit.setAttribute("type", "submit");
+	  	messagesubmit.setAttribute("value", "Post");
+	  	//add to the DOM 
+	  	$("#msgForm").append(messageTextArea);
+	  	$("#msgForm").append(messagesubmit);
+
+	  	//make textarea resizable
+	  	//$("msg").resizable({handles: "se"});
+	  	Spring.addDecoration(new Spring.ElementDecoration({elementId : 'msg', widgetType: "dijit.form.Textarea",widgetAttrs: { promptMessage : "Help Coordinate and Share Information." }})); 
+		
+	
+	//build map
+	
+    var myOptions = {
+    	      zoom: zoom,
+    	      center: latlng,
+    	      mapTypeId: google.maps.MapTypeId.TERRAIN
+    	    };
+    	    
+    	        map = new google.maps.Map(document.getElementById('map_canvas'),
+    	        myOptions);
+    	
+    	        
+    	        
+    	  //get events
+    	  $.getJSON(rootPath+"/ajax/returnEvent", {id: +eventId}, function(event) {
+    	      if (event != null) {
+    	    	
+    	    	//build assessment areas
+    	    	if (event.assessmentareas != null) {
+    	    		addAssessmentPolys(event.assessmentareas);
+    	        }
+    	    	if (event.serviceareas != null) {
+    	    		addServicePolys(event.serviceareas);
+    	        }
+    	    	if (event.securityincidents != null) {
+    	    		addSecurityMarkers(event.securityincidents);
+    	        }
+    	    	
+    	    	if (event.messages != null) {
+    	    		updateMessages(event.messages);
+    	        }
+    	    	
+    	    	
+				//drawEventDashboard(event);
+    	    	
+    	      }else{
+    	    	  alert('No data');
+    	            }
+    	  });       
+    	        
+      
+    	
+    	// listen for map changes and set new zoom and center to session variable via ajax			
+    	google.maps.event.addListener(map, 'idle', function(){
+
+    		newZoom = map.getZoom();
+    		newLat = map.getCenter().lat();
+    		newLng = map.getCenter().lng();
+    		
+    	    $.getJSON(rootPath+"/ajax/setMapState", {zoom: +newZoom, lat: +newLat, lng: +newLng}, function(status) {
+    	        if (status != null) {
+    	        	alert (status);
+    	        } else {
+    				alert('something failed');
+    	        }
+    	    });
+
+    		
+    	});
+    	
+    	
+    	
+    	
+    	
+    	
+});
+
+
+function addAssessmentPolys(assessmentAreas){
+
+	//create infowindow before loop
+	infowindowAssessmentPoly = new google.maps.InfoWindow();
+
+	//iterate over the assessmentAreas
+	$.each(assessmentAreas, function(key, AssessmentArea) {
+		
+		//build the url for area
+		areaUrl = rootPath+'/assessmentareas/'+ AssessmentArea.id;
+		
+		
+		//parse out lat lngs
+		pointHolder = [];
+		pathHolder = [];
+		points = AssessmentArea.polygon;
+		points = points.replace(/[\)]/g, "");
+		points = points.split("(");
+		
+		//check for blanks, if not blank put into array
+		
+		$.each(points, function(key, point) {
+			if (point != ""){
+								
+				//split the points by the comma
+				pointsArray = point.split(',');
+				lat = pointsArray[0];
+				lng = pointsArray[1];
+				latLng = new google.maps.LatLng(lat, lng);
+				pathHolder.push(latLng);
+				
+				}
+			
+		});
+
+
+
+		
+		assessmentPoly = new google.maps.Polygon({
+			path: pathHolder,
+			clickable: true,	
+			strokeColor: '#FF0000',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#FF0000',
+			fillOpacity: 0.35,
+			map: map});
+		
+		//set custom properties
+		assessmentPoly.myCategory = AssessmentArea.created;                                 
+		assessmentPoly.myDate = AssessmentArea.owner;
+
+		
+		
+        var content = '<h4>Assessment Area:</h4>' + 
+        '<b>Area:</b> '+  AssessmentArea.name  +'<br/>'+ 
+        '<b>Description:</b>'+  AssessmentArea.description  +'<br/>'+ 
+        '<b>Created:</b>' +  AssessmentArea.created  +'<br/>'+ 
+        '<b>Event:</b>'+  eventName  +'<br/>'+
+        '<b>Created by:</b>' +  AssessmentArea.owner.username  +'<br/>'+ 
+        '<b>Owner:</b>' +  AssessmentArea.owner.organization.name  +'<br/>'+ 
+        '<a alt="Accoord Assessment Area" href="'+areaUrl+'">Visit the Assessment Area</a>';
+
+		
+		google.maps.event.addListener(assessmentPoly, 'click', function(event){
+			infowindowAssessmentPoly.setContent(content); 
+			infowindowAssessmentPoly.setPosition(event.latLng); 
+			infowindowAssessmentPoly.open(map);}
+		);
+		
+		
+		assessmentPaths.push(assessmentPoly);
+		pathHolder=[];
+
+	});
+
+	
+	
+	
+
+}
+
+
+function addServicePolys(serviceAreas){
+	
+	//create infowindow before loop
+	infowindowServicePoly = new google.maps.InfoWindow();
+
+	//iterate over the assessmentAreas
+	$.each(serviceAreas, function(key, serviceArea) {
+		
+		//build the url for area
+		areaUrl =rootPath+'/serviceareas/'+ serviceArea.id;
+		
+		
+		//parse out lat lngs
+		pointHolder = [];
+		pathHolder = [];
+		points = serviceArea.polygon;
+		points = points.replace(/[\)]/g, "");
+		points = points.split("(");
+		
+		//check for blanks, if not blank put into array
+		
+		$.each(points, function(key, point) {
+			if (point != ""){
+								
+				//split the points by the comma
+				pointsArray = point.split(',');
+				lat = pointsArray[0];
+				lng = pointsArray[1];
+				latLng = new google.maps.LatLng(lat, lng);
+				pathHolder.push(latLng);
+				
+				}
+			
+		});
+
+
+
+		
+		servicePoly = new google.maps.Polygon({
+			path: pathHolder,
+			clickable: true,	
+			strokeColor: '#415776',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#415776',
+			fillOpacity: 0.35,
+			map: map});
+		
+		//set custom properties
+		servicePoly.myCategory = serviceArea.created;                                 
+		servicePoly.myDate = serviceArea.owner;
+
+		
+		
+        var content = '<h4>Service Area:</h4>' + 
+        '<b>Area:</b> '+  serviceArea.name  +'<br/>'+ 
+        '<b>Description:</b>'+  serviceArea.description  +'<br/>'+ 
+        '<b>Created:</b>' +  serviceArea.created  +'<br/>'+ 
+        '<b>Event:</b>'+  eventName  +'<br/>'+
+        '<b>Created by:</b>' +  serviceArea.owner.username  +'<br/>'+ 
+        '<b>Owner:</b>' +  serviceArea.owner.organization.name  +'<br/>'+ 
+        '<a alt="Accoord Service Area" href="'+areaUrl+'">Visit the Service Area</a>';
+
+		
+		google.maps.event.addListener(servicePoly, 'click', function(event){
+			infowindowServicePoly.setContent(content); 
+			infowindowServicePoly.setPosition(event.latLng); 
+			infowindowServicePoly.open(map);}
+		);
+		
+		
+		servicePaths.push(servicePoly);
+		pathHolder=[];
+
+	});
+
+	
+}
+
+function addSecurityMarkers (incidents){
+
+	
+	//create infowindow before loop
+	infowindowSecIncident = new google.maps.InfoWindow();
+	
+	//iterate over the assessmentAreas
+	$.each(incidents, function(key, incident) {
+		
+		
+		
+		//set up icons		
+		
+		switch (incident.type)
+		{
+		case "Abduction":
+		iconPath =rootPath+"/resources/images/icons/abductionIcon.png";
+		break;
+		case "Assault":
+		iconPath =rootPath+"/resources/images/icons/shootingIcon.png";
+		break;
+		case "Demonstration":
+		iconPath =rootPath+"/resources/images/icons/strikeIcon.png";
+	  	break;
+		case "Rape":
+		iconPath =rootPath+"/resources/images/icons/rapeIcon.png";
+		break;	
+		case "Theft":
+		iconPath =rootPath+"/resources/images/icons/theftIcon.png";
+	  	break;	  
+		case "Traffic":
+		iconPath =rootPath+"/resources/images/icons/securityIcon.png";
+	  	break;	  
+		case "Violence":
+		iconPath =rootPath+"/resources/images/icons/securityIcon.png";
+	  	break;
+		default:
+		iconPath =rootPath+"/resources/images/icons/securityIcon.png";
+		}
+		
+		
+		//build the url for area
+		incidentUrl = rootPath+'/securityincidents/'+ incident.id;
+	
+		var icon = new google.maps.MarkerImage(iconPath,
+				new google.maps.Size(32, 37),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(18, 37),
+				new google.maps.Size(32, 37)
+				);
+		
+		lat = incident.lat;
+		lng = incident.lng;
+		latLng = new google.maps.LatLng(lat, lng);
+		
+		marker = new google.maps.Marker({       
+			position: latLng,        
+			icon: icon,
+			map: map
+			}); 
+		
+	        var content = '<b>Security Incident:</b><p/>' + 
+	        '<b>Type:</b> '+  incident.type  +'<br/>'+ 
+	        '<b>Subject:</b> '+  incident.subject  +'<br/>'+ 
+	        '<b>Description:</b>'+  incident.description  +'<br/>'+ 
+	        '<b>Date:</b>' +  incident.incidentdate   +'<br/>'+ 
+	        '<b>Event:</b>'+  eventName  +'<br/>'+
+	        '<a alt="Accoord Security Incident" href="'+incidentUrl+'">Visit the Security Incident</a>';	
+			
+			google.maps.event.addListener(marker, 'click', function(event){
+				infowindowSecIncident.setContent(content); 
+				infowindowSecIncident.setPosition(event.latLng); 
+				infowindowSecIncident.open(map);}
+			);
+			
+			//push marker into array to check later if marker exists
+			securityMarkers.push(marker);	
+			
+	});
+}
+
+
+
+
+function updateMessages(messages) {
+	
+
+	
+	//get the message container
+	messageDivElement = document.getElementById("messages");
+	// add some style
+  	 messageDivElement.setAttribute("style", "width:600px");
+	//empty the children
+	$("#messages").empty();
+
+
+
+var msgLength = messages.length - 1;
+
+	for (var i = msgLength; i >= 0; i--) {
+
+			
+				date = new Date(messages[i].created);
+				hour = date.getHours();
+			  	min = date.getMinutes();
+				sec = date.getSeconds();
+				formatedDate = date.toDateString();
+			
+	    	
+		    	//create a holder for an individual message
+		    	messageHolder = document.createElement("div");
+		    	messageHolder.setAttribute("id", "msgHolders");
+		    	messageHolder.setAttribute("style", "border:2px solid #dcdcdc; padding:10px; margin-bottom:10px");
+		    	//create and profile pic
+		    	profileImg = document.createElement("img");
+		    	profileImg.setAttribute("id", "img_pic_"+i);
+				profileImg.setAttribute("src", rootPath+"/ajax/getProfilePic?id=" +messages[i].owner.id);
+		    	//create a message span
+			  	newMsgBox = document.createElement("span");
+			  	newMsgBox.setAttribute("id", "msgB_"+i);
+			  	newMsgBox.setAttribute("class", "msgbox");
+			  	newMsgBox.setAttribute("style", "vertical-align:top");
+			  	//create a footer
+			  	newMsgFooter = document.createElement("div");
+			  	newMsgFooter.setAttribute("id", "msgF_"+i);
+			  	newMsgFooter.setAttribute("class", "msgfooter");
+	
+			  	//append holder to div, then image span and footer to holder
+			  	messageDivElement.appendChild(messageHolder);
+			  	messageHolder.appendChild(profileImg);
+			  	messageHolder.appendChild(newMsgBox);
+			  	messageHolder.appendChild(newMsgFooter);
+	
+				$("#msgB_"+i).text(messages[i].message);
+				$("#msgF_"+i).text('posted by ' +messages[i].owner.username+ ' on ' + formatedDate + ' @ ' +hour+ ' hrs and '+min+ ' minutes' );
+			
+	
+	}	
+
+}
+
+
+//dashboard
+
+function drawEventDashboard(event) {
+
+	//Create a dashboard and data table        
+	var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard')); 
+	
+	
+	//create assessment table
+	if(event.assessmentareas.length != null){
+		
+		var assessmentdata = new google.visualization.DataTable();	
+		
+		// create the data table and add column headings before loop
+
+		assessmentdata.addColumn('string','Name');
+		assessmentdata.addColumn('date', 'Created');
+		assessmentdata.addColumn('number', 'Organization');
+		assessmentdata.addColumn('number', 'lat');
+		assessmentdata.addColumn('number', 'lng');
+		assessmentdata.addColumn('number', 'zoom');
+
+		//count length of assessment array and put into rows
+		assessmentdata.addRows(event.assessmentareas.length);
+
+		//set the values in a loop
+		$.each(event.assessmentareas, function(key, aa) {
+			//change json date to date object
+			date = new Date(aa.created);
+			
+			
+				
+				assessmentdata.setCell(key, 0, event.name);
+				assessmentdata.setCell(key, 1, date);
+				assessmentdata.setCell(key, 2, aa.owner.organization.name);
+				assessmentdata.setValue(key, 3, aa.lastlat);
+				assessmentdata.setValue(key, 4, aa.lastlng);
+				assessmentdata.setValue(key, 5, aa.lastzoomlevel);
+		
+		});  
+
+		// Define a category picker control for the Gender column
+		var categoryPicker = new google.visualization.ControlWrapper({
+		  'controlType': 'CategoryFilter',
+		  'containerId': 'CatSelect',
+		  'options': {
+		    'filterColumnLabel': 'Organization',
+		    'ui': {
+		    'labelStacking': 'horizonal',
+		      'allowTyping': false,
+		      'allowMultiple': true
+		    }
+		  }
+		});
+
+
+
+		// Define a table
+		var assessmenttable = new google.visualization.ChartWrapper({
+		  'chartType': 'Table',
+		  'containerId': 'assessmentDataTable',
+		  'options': {
+		    'width': '400px'
+
+		  },
+		  'view': {'columns': [0, 1, 2]}
+
+		});
+
+
+
+		  //bind and draw
+		  dashboard.bind(categoryPicker, assessmenttable);
+		  dashboard.draw(assessmentdata);
+		  
+
+		
+	}
+	
+
+
+	
+}
+
+
+function showMsgForm(type){
+	
+	
+	switch (type)
+	{
+	case "update":
+		$("#msgDiv").toggle();
+	break;
+	case "photo":
+		$.jGrowl("Photo posting has been disabled for the demo");
+	break;
+	case "file":
+		$.jGrowl("File posting has been disabled for the demo");
+	break;
+	default:
+		$("#msgDiv").toggle();
+	}
+	
+}
+
+</script>    
+
+
+
+<div id="greeting" style="width:600px; padding:5px">  
+<h3>${event.name}</h3>
+<h4>Browse the map and find where organizations have performed assessments and where they are providing services</h4>
+<h4>Use the controls at the right to filter data</h4>
+
+	<div id="breadcrumbs" style="padding:10px">  
+	<a alt="Accoord" href="${fn:escapeXml(system_url)}" title="Accoord">Home</a>
+	<c:out value=" &gt;&gt; "/>
+	<b>Event:</b>
+	<c:out value=" "/>
+	${event.name}
+	</div> 
+
+
+</div>  
+
+
+
+
+    
+    
+    <table border="0" cellpadding="0" cellspacing="0" style="font-family:arial,helvetica,sans-serif;width:100%">
+	<tbody>
+		<tr>
+			<td valign="top" width="600px">
+			
+			
+			<util:panel id="eventShowMap" title="Event: ${event.name}">
+		
+			<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="menu_bar" style="padding:5px;">
+	
+    			<b>Create:</b>
+    			<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_assessmentarea_url)}" title="Register an Assessment">Assessment Area</a>
+				<c:out value=" "/>
+				<a class="myButton" href="${fn:escapeXml(create_servicearea_url)}" title="Register a Service">Service Area</a>
+    			<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_security_url)}" title="Report a Security Incident">Security Incident</a>
+    
+ 				</div>
+			</sec:authorize>
+
+		
+        	<div id="map_canvas" style="width:590px; height:400px; margin-left: auto; margin-right: auto"/>
+			</util:panel>
+
+
+			<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="msg_bar" style="padding:10px; background: #DCDCDC; margin-top: 10px">
+	
+    			<b>Coordinate:</b>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('update');" title="Post an Update">Post an Update</a>
+				<c:out value=" "/>
+				<a class="myButton" href="javascript:showMsgForm('photo');" title="Post a Photo">Post a Photo</a>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('file');" title="Attach a File">Attach a File</a>
+    
+ 				</div>
+			
+			
+			<div id="msgDiv" class="msgform" style="padding:10px; background: #DCDCDC">
+			
+				<form id="msgForm">
+				
+				    <input type="hidden" name="authorId" value="${userId}" />
+				    <input type="hidden" name="eventId" value="${sessionEventId}" />
+				
+				</form>
+			</div>
+			<script type="text/javascript">
+			
+			$('#msgForm').submit(function(e) {
+				  
+				// stop form from submitting normally
+			    e.preventDefault();  
+				
+			    var msg = $(this).serialize();
+			    $.getJSON(rootPath+"/ajax/addEventMsg", msg, function(data) {
+	
+							  //call the event and pass the new messages to js fuction
+							$.getJSON(rootPath+"/ajax/returnEvent", {id: +eventId}, function(event) {
+								      if (event != null) {
+								    	
+								    	if (event.messages != null) {
+								    		
+								    		updateMessages(event.messages);
+								    		
+								        }
+								      }else{
+								    	  alert('No data');
+								            }
+							});  
+					   			    	
+			    	
+			    	
+			    	
+			    	
+			    	
+				 });
+			    
+			    //hide the div
+			    $("#msgDiv").hide();
+			    //clear the text box
+			    $("#msg").text('');
+			    
+			    return false;
+
+			});
+			
+			</script>
+			<div name ="spacer"></div>
+			<div id="messages"></div>
+		</sec:authorize>
+				
+		</td>
+			
+
+		<td valign="top">
+  			
+  			<h4 id="EventNameLabel" style="padding: 5px">${toCoverageEventName}</h4>
+
+
+			<div id="dashboard">
+				<!-- future slider -->
+				<div id="CatSelect" style="padding: 5px">Selector</div>
+				<div id="assessmentDataTable" style="padding: 5px">DataTable</div>
+			</div>
+    
+    	</td>
+    </tr>
+</tbody>
+</table>
+
+
+<div style="width:1000px; padding:10px">
+  <sec:authorize ifAllGranted="SUPER_ADMIN">
+     <page:show id="ps_com_accoord_domain_Event" object="${event}" path="/events" z="v6eWCBd3emBBT1WKWGgfGOgS95U=">
+        	<field:display field="name" id="s_com_accoord_domain_Event_name" object="${event}" z="UvNypVGZxTkC8hmKxgszUj6Hdco="/>
+        	<field:display field="description" id="s_com_accoord_domain_Event_description" object="${event}" z="Ldd2mVxKbZeQ3z/CDfLySI/H+zw="/>
+        	<field:display field="country" id="s_com_accoord_domain_Event_country" object="${event}" z="NKvbtuvmDo1YMoy7sgEjz08i2/I="/>
+        	<field:display field="eventtype" id="s_com_accoord_domain_Event_eventtype" object="${event}" z="KywUlDSnHGhVcJUp62gE09dS78Q="/>
+			<field:display field="lat" id="s_com_accoord_domain_Event_lat" object="${event}" z="fxrEJDWEO+ce0dSIa7QdrC9ygec="/>
+    		<field:display field="lng" id="s_com_accoord_domain_Event_lng" object="${event}" z="sG75Vw4pSEycCSBFuZKn0F52j0g="/>
+    		<field:display field="zoomlevel" id="s_com_accoord_domain_Event_zoomlevel" object="${event}" z="2MIP/e9cGmA2iSZXyAdUG24dLCk="/>    		
+     		<field:display field="open" id="s_com_accoord_domain_Event_open" object="${event}" z="tyZjWocDWKAqfIXCaInkmohxOCo="/>
+     		<field:display date="true" dateTimePattern="${event_created_date_format}" field="created" id="s_com_accoord_domain_Event_created" object="${event}" z="Yke5dbyyuJEGuv/fd6Z08/2t9ps="/>
+
+    		<field:display date="true" dateTimePattern="${event_dateclosed_date_format}" field="dateclosed" id="s_com_accoord_domain_Event_dateclosed" object="${event}" z="8QcsCvb+NQGcaLK5q4jRGkPo1sw="/>
+    		
+    		<field:display field="owner" id="s_com_accoord_domain_Event_owner" object="${event}" z="8RgWX5GGyOOEQzIF1ytFFqRzfG8="/>
+    		<field:display field="assessmentareas" id="s_com_accoord_domain_Event_assessmentareas" object="${event}" z="1qRie4XH7yeElPNg6xrjU/w1nnU="/>
+    		<field:display field="serviceareas" id="s_com_accoord_domain_Event_serviceareas" object="${event}" z="utum2TgmTxJA3awPryK5sY9TJ6k="/>
+    		<field:display field="securityincidents" id="s_com_accoord_domain_Event_securityincidents" object="${event}" z="s3nVhLpFUEDmxFKf+ctWfhJ1HVo="/>
+
+    		<field:display field="messages" id="s_com_accoord_domain_Event_messages" object="${event}" z="wqDpxMByFPBJZueEcgy+zS9WT1E="/>
+       </page:show>
+	</sec:authorize>
+</div>
+  
+    
+</div>

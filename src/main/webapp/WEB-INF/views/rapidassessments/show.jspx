@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_RapidAssessment" object="${rapidassessment}" path="/rapidassessments" z="I+lKxAO/nZMJO8OB0cueDR8hjdI=">
+        <field:display date="true" dateTimePattern="${rapidAssessment_created_date_format}" field="created" id="s_com_accoord_domain_RapidAssessment_created" object="${rapidassessment}" z="mRsmCOX6VEDGO85t+WftS2bCLPY="/>
+        <field:display field="area" id="s_com_accoord_domain_RapidAssessment_area" object="${rapidassessment}" z="g43v/PgX9sp8CbdxF2AkZkMFRXE="/>
+        <field:display field="owner" id="s_com_accoord_domain_RapidAssessment_owner" object="${rapidassessment}" z="sXbLC7pHEvFuospd9dMlWUDfWsA="/>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    <field:display field="gen_est_per_aff" id="s_com_accoord_domain_RapidAssessment_gen_est_per_aff" object="${rapidassessment}" z="WDrdCu7aElExT7DhkERNJ3Es4QU="/>
+        <field:display field="gen_est_per_aff_male" id="s_com_accoord_domain_RapidAssessment_gen_est_per_aff_male" object="${rapidassessment}" z="RRlk/WxNCZggLcXFMUszFUc3uOo="/>
+        <field:display field="gen_est_per_aff_female" id="s_com_accoord_domain_RapidAssessment_gen_est_per_aff_female" object="${rapidassessment}" z="GiHn6AJour/TOJSI+y15fMxC4As="/>
+        <field:display field="gen_est_num_dead" id="s_com_accoord_domain_RapidAssessment_gen_est_num_dead" object="${rapidassessment}" z="gxzizqBwltgKlY28x2qzb4rQ17Y="/>
+        <field:display field="gen_est_num_injured" id="s_com_accoord_domain_RapidAssessment_gen_est_num_injured" object="${rapidassessment}" z="MCg4O6d4Y3wvWpdgrD5VKPHnNOE="/>
+        <field:display field="gen_est_num_missing" id="s_com_accoord_domain_RapidAssessment_gen_est_num_missing" object="${rapidassessment}" z="9OLMO8ZLb1N6glKGHV8bF6LcSKg="/>
+        <field:display field="gen_likely_movements" id="s_com_accoord_domain_RapidAssessment_gen_likely_movements" object="${rapidassessment}" z="1hy3T2Kp8G1Cu8Ndu8U3gDURr6U="/>
+        <field:display field="gen_keypeople_contact" id="s_com_accoord_domain_RapidAssessment_gen_keypeople_contact" object="${rapidassessment}" z="yt9/z+r8iA4A/uQzdxpmfTPpJSw="/>
+        <field:display field="gen_being_registered" id="s_com_accoord_domain_RapidAssessment_gen_being_registered" object="${rapidassessment}" z="XdGmm3o41VQ4JCLHPzEw8zIkS9Q="/>
+        <field:display field="she_est_num_withshelters" id="s_com_accoord_domain_RapidAssessment_she_est_num_withshelters" object="${rapidassessment}" z="VVvdirwiZtos9YdHuNiCnisslYo="/>
+        <field:display field="she_protection_elem" id="s_com_accoord_domain_RapidAssessment_she_protection_elem" object="${rapidassessment}" z="9xwyN7vWtiwYuCYA3UOfyTDxhLY="/>
+        <field:display field="she_privacy" id="s_com_accoord_domain_RapidAssessment_she_privacy" object="${rapidassessment}" z="mVT5fwQV+9QTH8RkW7Uidk1AYt0="/>
+        <field:display field="she_security" id="s_com_accoord_domain_RapidAssessment_she_security" object="${rapidassessment}" z="i5dCvrh4BJuQL72blk1p7q9UVWc="/>
+        <field:display field="she_fire" id="s_com_accoord_domain_RapidAssessment_she_fire" object="${rapidassessment}" z="0zwx7ykbn1z77TwW0JhM4+xJDAs="/>
+        <field:display field="she_est_per_beds" id="s_com_accoord_domain_RapidAssessment_she_est_per_beds" object="${rapidassessment}" z="h5G4NIz9hPf5jJrYL7zGLwPucEM="/>
+        <field:display field="she_est_per_cooking" id="s_com_accoord_domain_RapidAssessment_she_est_per_cooking" object="${rapidassessment}" z="PaQKbBMJQ8uY2X1PBbee2pa2+Cc="/>
+        <field:display field="she_est_per_plastic" id="s_com_accoord_domain_RapidAssessment_she_est_per_plastic" object="${rapidassessment}" z="ZgyQ/veFWMy0Ykz/R2IVS4XH7Uw="/>
+        <field:display field="wat_used_perday_l_drinking" id="s_com_accoord_domain_RapidAssessment_wat_used_perday_l_drinking" object="${rapidassessment}" z="eIBN8aece2qT1uc1JDFWGxKvHQQ="/>
+        <field:display field="wat_used_perday_l_cooking" id="s_com_accoord_domain_RapidAssessment_wat_used_perday_l_cooking" object="${rapidassessment}" z="/bn/phK7ZQLWdOrP5AwSWqHH/D8="/>
+        <field:display field="wat_used_perday_l_bathe" id="s_com_accoord_domain_RapidAssessment_wat_used_perday_l_bathe" object="${rapidassessment}" z="uBFZEQf+o901TZjhQZbo5Cqc0q8="/>
+        <field:display field="wat_est_min_collect" id="s_com_accoord_domain_RapidAssessment_wat_est_min_collect" object="${rapidassessment}" z="0nQGTkLmxXbeHc7B6ek8BHpp6so="/>
+        <field:display field="wat_pipe_net_present" id="s_com_accoord_domain_RapidAssessment_wat_pipe_net_present" object="${rapidassessment}" z="RCGvaKoC92tGh/jZK4GMFHQnPNs="/>
+        <field:display field="wat_surface_present" id="s_com_accoord_domain_RapidAssessment_wat_surface_present" object="${rapidassessment}" z="CrwYLI3iadunVnIL/SVVCuq1Z1c="/>
+        <field:display field="wat_vendors_present" id="s_com_accoord_domain_RapidAssessment_wat_vendors_present" object="${rapidassessment}" z="cgKhFX0igN3p9ILncACCjCYPF30="/>
+        <field:display field="wat_est_def_funclat" id="s_com_accoord_domain_RapidAssessment_wat_est_def_funclat" object="${rapidassessment}" z="gkrGnN9SQVluqglVILc4VeLmsL8="/>
+        <field:display field="wat_est_avgper_funclat" id="s_com_accoord_domain_RapidAssessment_wat_est_avgper_funclat" object="${rapidassessment}" z="VX986qxBhoVvDG7P5m6qrnalQSY="/>
+        <field:display field="wat_est_def_open" id="s_com_accoord_domain_RapidAssessment_wat_est_def_open" object="${rapidassessment}" z="jdW+8AnLHh0XAOpTTQaM/PIO6kU="/>
+        <field:display field="wat_est_def_managed" id="s_com_accoord_domain_RapidAssessment_wat_est_def_managed" object="${rapidassessment}" z="8k6xQX98mVkWqM32aip2WtGJIXQ="/>
+        <field:display field="wat_est_def_publat" id="s_com_accoord_domain_RapidAssessment_wat_est_def_publat" object="${rapidassessment}" z="OLPUjNQYr9ZraC3xm6I5m61X1iU="/>
+        <field:display field="wat_est_def_famlat" id="s_com_accoord_domain_RapidAssessment_wat_est_def_famlat" object="${rapidassessment}" z="qdIrNGAyWYHFCJuBLFwgJzT96D8="/>
+        <field:display field="wat_def_latforwomen" id="s_com_accoord_domain_RapidAssessment_wat_def_latforwomen" object="${rapidassessment}" z="7aNEqIxdqtye4lFIx1/grw/quA8="/>
+        <field:display field="wat_hp_num_wcontainers" id="s_com_accoord_domain_RapidAssessment_wat_hp_num_wcontainers" object="${rapidassessment}" z="RbYFXGrs28633ez/9tiaXb6xzEo="/>
+        <field:display field="wat_hp_handwashstation" id="s_com_accoord_domain_RapidAssessment_wat_hp_handwashstation" object="${rapidassessment}" z="R7DjflwhlV0aWst2eu1B2lsA1Nw="/>
+    </page:show>
+</div>

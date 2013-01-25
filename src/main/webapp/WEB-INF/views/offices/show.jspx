@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Office" object="${office}" path="/offices" z="FL3oVxEEkjH1MGjJjST6H5Edhl8=">
+        <field:display date="true" dateTimePattern="${office_created_date_format}" field="created" id="s_com_accoord_domain_Office_created" object="${office}" z="a5AuPw2HbhROeV1aeCYM7AhbtC8="/>
+        <field:display field="open" id="s_com_accoord_domain_Office_open" object="${office}" z="vlRbeuDV3pGx5YBWffQhzEYIxlY="/>
+        <field:display field="type" id="s_com_accoord_domain_Office_type" object="${office}" z="1mlUPqLahCH1xt7J1330y+XzTBw="/>
+        <field:display field="address" id="s_com_accoord_domain_Office_address" object="${office}" z="9FShWy7eMiQNCpu9/RWawMHikU4="/>
+        <field:display field="city" id="s_com_accoord_domain_Office_city" object="${office}" z="EJmCfLuWwH1EyesjAVBERpWyD9o="/>
+        <field:display field="country" id="s_com_accoord_domain_Office_country" object="${office}" z="KzIHGF444NxpQls6+BD5zpyAqP8="/>
+        <field:display field="description" id="s_com_accoord_domain_Office_description" object="${office}" z="NxB0qgxiMXDCycG6Gcz8irBvVmY="/>
+        <field:display field="lat" id="s_com_accoord_domain_Office_lat" object="${office}" z="PIgThe8HjAP6t3JMh5+16XQGGeU="/>
+        <field:display field="lng" id="s_com_accoord_domain_Office_lng" object="${office}" z="i75i9FZr8xZickcEePVbtG3yjE0="/>
+        
+        <field:display field="organization" id="s_com_accoord_domain_Office_organization" object="${office}" z="cVcPss5xKyFOInnepaje/9Ht9Ds="/>
+    <field:display field="owner" id="s_com_accoord_domain_Office_owner" object="${office}" z="8MgfOTAfRceuycbO0WMOHVJ8hmQ="/>
+    </page:show>
+</div>

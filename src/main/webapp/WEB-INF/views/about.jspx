@@ -1,0 +1,37 @@
+<div xmlns:spring="http://www.springframework.org/tags" 
+xmlns:sec="http://www.springframework.org/security/tags" 
+xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+  
+
+  
+
+
+
+<div id="greeting" style="width:600px; padding:5px">  
+
+<h4>About Us</h4>
+
+<p>Accoord, LLC is a private, mission-driven, humanitarian company  dedicated to  improving the delivery of services to 
+disaster-affected  communities by  creating a single, cross-organizational platform for  data management, data processing,  
+visualization and collaboration for  relief organizations and groups.</p>
+
+<p>We have over twenty-five years of work directly implementing   emergency relief and development programs throughout 
+various parts of   the world and currently hold leadership positions in major relief and   development agencies. 
+We understand well the information needs of   implementing organizations and the challenges they face in sharing it.</p>
+
+
+<a href="http://humanitarian-accoord.com" title="about accoord">Vist our website for more information</a>
+
+
+    
+
+</div>
+
+
+

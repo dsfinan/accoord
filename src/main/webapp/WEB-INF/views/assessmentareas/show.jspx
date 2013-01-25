@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+		xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+		xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:jsp="http://java.sun.com/JSP/Page" 
+		xmlns:maps="urn:jsptagdir:/WEB-INF/tags/map" 
+		xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:sec="http://www.springframework.org/security/tags" 
+		xmlns:spring="http://www.springframework.org/tags" 
+		xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+<c:if test="${pageContext['request'].userPrincipal != null}">    
+    	<sec:authentication property="principal.userObject.id" var="userId"/>
+    	<sec:authentication property="principal.userObject.firstname" var="userFirstName"/>
+    	<sec:authentication property="principal.userObject.firstname" var="userLastName"/>
+    	    	<!--  Set the event to session variables, every visit resets the variable -->
+    	<c:set scope="page" value="true" var="isAuthenticated"/>
+</c:if>
+ 
+
+
+		<c:set scope="page" value="${assessmentarea.id}" var="assessmentId"/>
+
+
+     	<c:set value="/rapidassessments?form" var="rapidAssessmentPath"/>
+		<spring:url value="${rapidAssessmentPath}" var="create_rapidassessment_url"/>
+
+<script type="text/javascript">
+
+
+// set the inital map variables for full scope
+var map;
+var latlng = new google.maps.LatLng(${assessmentarea.lastlat},${assessmentarea.lastlng});
+var zoom = ${assessmentarea.lastzoomlevel};
+var polyPath = "${assessmentarea.polygon}";
+var assessmentId = ${assessmentId};
+var isAuthenticated = '${isAuthenticated}';  //TODO put in rendered JSP - this is bad security
+
+
+
+
+
+$(document).ready(function(){
+	
+
+	if (isAuthenticated == "true"){
+		buildMsgForm();
+		}
+	
+
+
+	//build map
+	
+    var myOptions = {
+    	    zoom: zoom,
+    	    center: latlng,
+    	    panControl: false,
+    	    streetViewControl: false,
+    	    draggable: false,
+			zoomControl: false,
+			scrollwheel: false,
+    	    mapTypeId: google.maps.MapTypeId.ROADMAP  
+    	    };
+    	    
+    	        map = new google.maps.Map(document.getElementById('map_canvas'),
+    	        myOptions);
+    	        
+    	        
+    			//parse out lat lngs
+    			pointHolder = [];
+    			pathHolder = [];
+    			points = polyPath;
+    			points = points.replace(/[\)]/g, "");
+    			points = points.split("(");
+    			
+    			//check for blanks, if not blank put into array
+    			
+    			$.each(points, function(key, point) {
+    				if (point != ""){
+    									
+    					//split the points by the comma
+    					pointsArray = point.split(',');
+    					lat = pointsArray[0];
+    					lng = pointsArray[1];
+    					latLng = new google.maps.LatLng(lat, lng);
+    					pathHolder.push(latLng);
+    					
+    					}
+    				
+    			});
+
+    	
+    			assessmentPoly = new google.maps.Polygon({
+    				path: pathHolder,
+    				clickable: false,
+    				strokeColor: '#FF0000',
+    				strokeOpacity: 0.4,
+    				strokeWeight: 2,
+    				fillColor: '#FF0000',
+    				fillOpacity: 0.35,
+    				map: map}); 
+    	        
+
+    			
+    	    	  //get assessment
+    	    	  $.getJSON("/ajax/returnAssesssmentArea", {id: +assessmentId}, function(assessment) {
+    	    	      if (assessment != null) {
+    	    	    	
+    	    	    	
+    	    	    	if (assessment.messages != null) {
+    	    	    		updateMessages(assessment.messages);
+    	    	        }
+
+    	    	    	
+    	    	      }else{
+    	    	    	  alert('No data');
+    	    	            }
+    	    	  });       
+ 
+    	    	  // Create and draw the visualization.
+    			//	drawVisualization();
+    	    	  
+    	    	  
+    	    	  
+    	    	  
+     	
+});
+
+
+function buildMsgForm(){
+	msgForm = document.getElementById('msgForm');
+	//hide the msg form
+	$("#msgDiv").hide();
+
+
+	//messaging...build text area and submit elements dynamicly
+
+	    messageTextArea = document.createElement("input");
+	  	messageTextArea.setAttribute("name", "msg");
+		messageTextArea.setAttribute("id", "msg");
+		messageTextArea.setAttribute("cols", "100");
+		messageTextArea.setAttribute("type", "textarea");
+		//messageTextArea. add text
+	  	messagesubmit = document.createElement("input");
+	  	messagesubmit.setAttribute("name", "submitPost");
+	  	messagesubmit.setAttribute("type", "submit");
+	  	messagesubmit.setAttribute("value", "Post");
+	  	//add to the DOM 
+	  	$("#msgForm").append(messageTextArea);
+	  	$("#msgForm").append(messagesubmit);
+
+	  	//make textarea resizable
+	  	$("msg").resizable({handles: "se"});
+	  	Spring.addDecoration(new Spring.ElementDecoration({elementId : 'msg', widgetType: "dijit.form.Textarea",widgetAttrs: { promptMessage : "Help Coordinate and Share Information." }})); 
+	}
+    	
+
+
+
+		
+</script>  
+
+
+<div id="greeting" style="width:600px; padding:2px">  
+
+
+	<div id="breadcrumbs" style="padding:5px">  
+	<a alt="Accoord" href="${fn:escapeXml(system_url)}" title="Accoord">Home</a>
+	<c:out value=" &gt;&gt; "/>
+	<b>Event:</b>
+	<c:out value=" "/>
+	<a alt="Accoord" href="${fn:escapeXml(system_url)}/event/${sessionEventId}" title="Accoord">${toCoverageEventName}</a>
+	<c:out value=" "/>
+	<b>Assessment Area:</b>
+	${assessmentarea.name}
+	</div> 
+
+
+</div>  
+
+
+<table border="0" cellpadding="0" cellspacing="0" style="font-family:arial,helvetica,sans-serif;" width="100%">
+<tbody>
+
+
+	<tr>
+	<td valign="top" width="500px">
+		
+		
+	<util:panel id="assessmentShowMap" title="Assessment Area: ${assessmentarea.name}">
+	
+			<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="menu_bar" style="padding:5px;">
+	
+    			<b>Create:</b>
+    			<!--  
+    			<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_rapidassessment_url)}" title="Rapid Assessment">Rapid Assessment</a>
+				-->
+				<c:out value=" "/>
+				<a class="myButton" href="javascript:showMsgForm('customData');" title="Custom Data">Custom Assessment</a>
+
+ 				</div>
+			</sec:authorize>	
+	
+	
+    	<div id="map_canvas" style="width:500px; height:400px; margin-left: auto; margin-right: auto"/>
+	
+		
+	</util:panel>
+
+			<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="msg_bar" style="padding:10px; background: #DCDCDC; margin-top: 10px">
+	
+    			<b>Coordinate:</b>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('update');" title="Post an Update">Post an Update</a>
+				<c:out value=" "/>
+				<a class="myButton" href="javascript:showMsgForm('photo');" title="Post a Photo">Post a Photo</a>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('file');" title="Attach a File">Attach a File</a>
+    
+ 				</div>
+			
+			
+			<div id="msgDiv" class="msgform" style="padding:10px; background: #DCDCDC">
+			
+				<form id="msgForm">
+				
+				    <input type="hidden" name="authorId" value="${userId}" />
+				    <input type="hidden" name="assessmentId" value="${assessmentId}" />
+				
+				</form>
+			</div>
+			<script type="text/javascript">
+			
+			$('#msgForm').submit(function(e) {
+				  
+				// stop form from submitting normally
+			    e.preventDefault();  
+				
+			    var msg = $(this).serialize();
+			    $.getJSON(rootPath+"/ajax/addAssessMsg", msg, function(data) {
+
+							  //call the event and pass the new messages to js fuction
+							$.getJSON(rootPath+"/ajax/returnAssesssmentArea", {id: +assessmentId}, function(assessment) {
+								      if (assessment != null) {
+								    	
+								    	if (assessment.messages != null) {
+								    		
+								    		updateMessages(assessment.messages);
+								        }
+								      }else{
+								    	  alert('No data');
+								            }
+							});     
+			    	
+
+				 });
+			    //hide the div
+			    $("#msgDiv").hide();
+			    //clear the text box
+			    $("#msg").text('');			    
+
+			    return false;
+			
+				
+			});
+			
+			</script>
+			<div name ="spacer"></div>
+			<div id="messages"></div>
+		</sec:authorize>
+
+
+		
+</td>
+		
+
+<td valign="top">
+
+<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+<iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGdWQ2lUWk5hY2VILVlrTGEtMWlUWUE6MQ" width="350" height="2154" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+</sec:authorize>
+
+<h4>Dash Board</h4>
+
+Under Development
+
+
+</td>
+
+</tr>
+</tbody>
+</table>
+
+
+<div style="width:1000px; padding:10px">
+  <sec:authorize ifAllGranted="SUPER_ADMIN">
+    <page:show id="ps_com_accoord_domain_AssessmentArea" object="${assessmentarea}" path="/assessmentareas" z="NZZy+5WYo7xbE+ZPHJTMzj24TrY=">
+        <field:display field="name" id="s_com_accoord_domain_AssessmentArea_name" object="${assessmentarea}" z="Fbf+R/Z3jJ3Z7gmPhKWlhS4R6sE="/>
+        <field:display field="description" id="s_com_accoord_domain_AssessmentArea_description" object="${assessmentarea}" z="Fm/lIH8rN3IwtNgZeYDc+R7OUNE="/>
+        <field:display date="true" dateTimePattern="${assessmentArea_created_date_format}" field="created" id="s_com_accoord_domain_AssessmentArea_created" object="${assessmentarea}" z="cI7xg132nbGa1nX2kiDPBVTS6z4="/>
+        <field:display field="polygon" id="s_com_accoord_domain_AssessmentArea_polygon" object="${assessmentarea}" z="mX3sMdM0F+57xtauv0zc7MzVCmc="/>
+        <field:display field="event" id="s_com_accoord_domain_AssessmentArea_event" object="${assessmentarea}" z="Wl6CincMFbt5mndD28AnTxYpcuM="/>
+   		 <field:display field="owner" id="s_com_accoord_domain_AssessmentArea_owner" object="${assessmentarea}" z="Uwszp6EsScrZP8bijVIxg4ncipQ="/>
+     	<field:display field="lastlat" id="s_com_accoord_domain_AssessmentArea_lastlat" object="${assessmentarea}" z="4LRZkQgOdktGQUPaB4Ymxex1elY="/>
+     	<field:display field="lastlng" id="s_com_accoord_domain_AssessmentArea_lastlng" object="${assessmentarea}" z="pxboPQPS/tNabUmSTh+JKncbY4U="/>
+        <field:display field="lastzoomlevel" id="s_com_accoord_domain_AssessmentArea_lastzoomlevel" object="${assessmentarea}" z="KEqnGHw0aGPX38DCf9vRbDZ8wMU="/>
+    	<field:display field="rapidassessments" id="s_com_accoord_domain_AssessmentArea_rapidassessments" object="${assessmentarea}" z="ZlId8cA5FIspIDLVvNjPFzuPxkY="/>
+   		<field:display field="messages" id="s_com_accoord_domain_AssessmentArea_messages" object="${assessmentarea}" z="zZjEHVLRGyzVmwD4S93p6ncN7mA="/>
+          </page:show>
+	</sec:authorize>
+</div>
+
+
+
+</div>

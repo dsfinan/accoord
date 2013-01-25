@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_ShelterProject" items="${shelterprojects}" z="IIOKpjht2OHr3jIp4ymd/9pqORg=">
+        <table:table data="${shelterprojects}" id="l_com_accoord_domain_ShelterProject" path="/shelterprojects" z="gVb9f2mPxcqqmO/3uDOpms9PujA=">
+            
+            
+            
+            
+            
+            <table:column id="c_com_accoord_domain_ShelterProject_attachment" property="attachment" z="+VYpHUtoQNPnxS1nfDAgLuxcPmM="/>
+        <table:column id="c_com_accoord_domain_ShelterProject_createddate" property="createddate" z="h0KBdmoJzOrNa2J5QGwJjZZruMk="/>
+            <table:column id="c_com_accoord_domain_ShelterProject_sheltertype" property="sheltertype" z="iXVKPdmA8tr4SqqWY9+qczJ73So="/>
+            <table:column id="c_com_accoord_domain_ShelterProject_estimatedstartdate" property="estimatedstartdate" z="a4oo5YF9sF9PAnYmKcflfrhnnag="/>
+            <table:column id="c_com_accoord_domain_ShelterProject_estimatedenddate" property="estimatedenddate" z="sJfPpMglSoFCIUJvmIPmvkAA3PM="/>
+            <table:column id="c_com_accoord_domain_ShelterProject_targetnumberofunits" property="targetnumberofunits" z="WJcfN68D+aJja0I1ESyy/6a+vPY="/>
+        </table:table>
+    </page:list>
+</div>

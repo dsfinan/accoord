@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="warehouses/list">
+        <put-attribute name="body" value="/WEB-INF/views/warehouses/list.jspx"/>
+    </definition>
+<definition extends="default" name="warehouses/show">
+        <put-attribute name="body" value="/WEB-INF/views/warehouses/show.jspx"/>
+    </definition>
+<definition extends="default" name="warehouses/create">
+        <put-attribute name="body" value="/WEB-INF/views/warehouses/create.jspx"/>
+    </definition>
+<definition extends="default" name="warehouses/update">
+        <put-attribute name="body" value="/WEB-INF/views/warehouses/update.jspx"/>
+    </definition>
+</tiles-definitions>

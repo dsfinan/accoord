@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_RapidAssessment" items="${rapidassessments}" z="pzng4BYNwdA8DgUMU6Jy5TnjLg4=">
+        <table:table data="${rapidassessments}" id="l_com_accoord_domain_RapidAssessment" path="/rapidassessments" z="zuppEDMJOaQplvNZSjjX6KtCa8Y=">
+            <table:column id="c_com_accoord_domain_RapidAssessment_created" property="created" z="iQj3plv59qNsHms6GVi/snn976k="/>
+            <table:column id="c_com_accoord_domain_RapidAssessment_area" property="area" z="/ELhc1Dp2JQEdvVbOt8GDArYJu4="/>
+            <table:column id="c_com_accoord_domain_RapidAssessment_owner" property="owner" z="ysfc9xnfqPKz7gxajuM29asbdH0="/>
+            
+            
+            
+        
+        <table:column id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff" property="gen_est_per_aff" z="u9slSpnPfFuUSv8cMJFCvCTzxFc="/>
+            <table:column id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff_male" property="gen_est_per_aff_male" z="c57rqw/CWccaKrMVuRCJmZf6bmI="/>
+            <table:column id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff_female" property="gen_est_per_aff_female" z="GRgShqL7FWdemV2rp9zhwIN9tSo="/>
+        </table:table>
+    </page:list>
+</div>

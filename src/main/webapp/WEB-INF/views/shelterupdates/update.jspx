@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_ShelterUpdate" modelAttribute="shelterUpdate" path="/shelterupdates" z="j5tFa1rf5SH0cNkfXvp4ZY36FCw=">
+        <field:datetime dateTimePattern="${shelterUpdate_updated_date_format}" field="updated" id="c_com_accoord_domain_ShelterUpdate_updated" z="rToWpl7oO9cYhvFMpvSi9fw2QFo="/>
+        
+        <field:select field="project" id="c_com_accoord_domain_ShelterUpdate_project" itemValue="id" items="${shelterprojects}" path="/shelterprojects" required="true" z="2Ae8+yXuUCX8vMOyerBiY+1ciJU="/>
+    <field:input field="actualunitsbuilt" id="c_com_accoord_domain_ShelterUpdate_actualunitsbuilt" validationMessageCode="field_invalid_number" z="2rGtgV0bXUD9iRPl4voAqTyEtDg="/>
+    </form:update>
+</div>

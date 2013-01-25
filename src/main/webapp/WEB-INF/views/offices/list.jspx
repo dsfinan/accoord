@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Office" items="${offices}" z="7ZwlUKOJKmCwCHsoO+MRnOkY3rE=">
+        <table:table data="${offices}" id="l_com_accoord_domain_Office" path="/offices" z="/eoqGpkO+CfajTsUP5es4Gil3pw=">
+            <table:column id="c_com_accoord_domain_Office_created" property="created" z="v2Fijlzp384Q610eS06iUjDLoQ4="/>
+            <table:column id="c_com_accoord_domain_Office_open" property="open" z="T2v0aNoeuvm1/fnsWfxKsQLgpfg="/>
+            <table:column id="c_com_accoord_domain_Office_type" property="type" z="KMU8G2p6YSAdedvCfSTVwY8HwTQ="/>
+            <table:column id="c_com_accoord_domain_Office_address" property="address" z="7AFwWEJeu4pesmYBMb3xZ2aGq+0="/>
+            <table:column id="c_com_accoord_domain_Office_city" property="city" z="IHF7k3IVgOVoJ/NfeRTJGO+YUvA="/>
+            <table:column id="c_com_accoord_domain_Office_country" property="country" z="xNIwi6S3djui+Ytk8wQLuH5SXjM="/>
+        </table:table>
+    </page:list>
+</div>

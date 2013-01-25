@@ -1,0 +1,22 @@
+  
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <title>Accoord Recovery</title>
+
+    <h2>Recovery</h2>
+    <p>
+      Accoord Recovery is a series of tools currently under development which will allow Organizations to share information
+      regarding long-term development projects.
+      
+    </p>
+    <p>
+      Accoord Recovery is not available in this demonstraion, but please keep up to date on development by following 
+      our blog.
+      
+    </p>
+
+
+</div>
+

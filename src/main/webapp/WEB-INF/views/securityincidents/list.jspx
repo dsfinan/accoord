@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_SecurityIncident" items="${securityincidents}" z="R7wGLJDEKAdqn4JlM3NPusq/aVE=">
+        <table:table data="${securityincidents}" id="l_com_accoord_domain_SecurityIncident" path="/securityincidents" z="LCx8NbYQWcPTTEvZezyG9MW+o24=">
+            
+            <table:column id="c_com_accoord_domain_SecurityIncident_subject" property="subject" z="OBNs+7+qB7WLgl34/AZFK+3sULQ="/>
+            <table:column id="c_com_accoord_domain_SecurityIncident_type" property="type" z="oMrFmrLISRRmI3INt/htbJU3TQU="/>
+            <table:column id="c_com_accoord_domain_SecurityIncident_description" property="description" z="ih/8ouX0FPtv9jMsxOTZmqmtrTA="/>
+            
+            
+        <table:column id="c_com_accoord_domain_SecurityIncident_incidentdate" property="incidentdate" z="MfXsxtBS2Jdq+fiLefGIHxSFuzg="/>
+            <table:column id="c_com_accoord_domain_SecurityIncident_lat" property="lat" z="zeuPXcavZ7wPx8NsOL/PhExACcI="/>
+            <table:column id="c_com_accoord_domain_SecurityIncident_lng" property="lng" z="7Ph5X7E0hGS5C5AfiP4tA8z3goE="/>
+        </table:table>
+    </page:list>
+</div>

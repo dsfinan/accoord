@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_StockItem" items="${stockitems}" z="8sk7gk/UZl8Io2ekDw8pej8lyf0=">
+        <table:table data="${stockitems}" id="l_com_accoord_domain_StockItem" path="/stockitems" z="Y4yLdGQxwDZDOeSW8gtCK9DHHoI=">
+            <table:column id="c_com_accoord_domain_StockItem_created" property="created" z="l67eoK63rhVCUaRLmpypz4beNSs="/>
+            <table:column id="c_com_accoord_domain_StockItem_item" property="item" z="qFilVkMbGKaUoUGOTuiBgSbNR+4="/>
+            
+            
+            <table:column id="c_com_accoord_domain_StockItem_notes" property="notes" z="pbHO7xrFZfZaSgdvrPnlfbRhrzM="/>
+            <table:column id="c_com_accoord_domain_StockItem_sector" property="sector" z="rCeEMrOTgwFrkuJOhG6tOf+95HA="/>
+        <table:column id="c_com_accoord_domain_StockItem_unittype" property="unittype" z="gocKasZ2NT+bOUVyOTN/NIKWzQw="/>
+            <table:column id="c_com_accoord_domain_StockItem_numberofunits" property="numberofunits" z="TNZEtangeELFnOs62myaN6H6vZ4="/>
+        </table:table>
+    </page:list>
+</div>

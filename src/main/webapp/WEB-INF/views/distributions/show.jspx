@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Distribution" object="${distribution}" path="/distributions" z="HD6aWtTLu/v6av03HRZw957DAWs=">
+        <field:display date="true" dateTimePattern="${distribution_dateperformed_date_format}" field="dateperformed" id="s_com_accoord_domain_Distribution_dateperformed" object="${distribution}" z="vLoTiSTPktxJnqTzsaPT80NuqXc="/>
+        <field:display field="distributiontype" id="s_com_accoord_domain_Distribution_distributiontype" object="${distribution}" z="1bSGks8JauGb9iMviedTe3mRQZw="/>
+        <field:display field="sector" id="s_com_accoord_domain_Distribution_sector" object="${distribution}" z="6NiGR8IEdzC7uGEdow8WqVDC4SE="/>
+        <field:display field="description" id="s_com_accoord_domain_Distribution_description" object="${distribution}" z="zwHnNFChA9ZsRNt1PGfq9lo8ydw="/>
+        <field:display field="number_units" id="s_com_accoord_domain_Distribution_number_units" object="${distribution}" z="n69ervGnLwYQ1RRqTisOqMf7ZhM="/>
+        <field:display field="units" id="s_com_accoord_domain_Distribution_units" object="${distribution}" z="FVT2PWrqHJP0TionC7ZEy+2WJ7U="/>
+        <field:display field="owner" id="s_com_accoord_domain_Distribution_owner" object="${distribution}" z="mbcFp/tooA9atZ5FqEa7KmCF24k="/>
+        <field:display field="area" id="s_com_accoord_domain_Distribution_area" object="${distribution}" z="XWlbU3/wYHq35wrAfvdo3K8NvO8="/>
+    </page:show>
+</div>

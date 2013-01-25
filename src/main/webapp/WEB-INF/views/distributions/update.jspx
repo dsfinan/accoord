@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_Distribution" modelAttribute="distribution" path="/distributions" z="ogrW31HmKec4FcaxOmuSkF9IpNs=">
+        <field:datetime dateTimePattern="${distribution_dateperformed_date_format}" field="dateperformed" id="c_com_accoord_domain_Distribution_dateperformed" required="true" z="oJVr6pVID3XoMDcqDgRKAfkumvA="/>
+        <field:select field="distributiontype" id="c_com_accoord_domain_Distribution_distributiontype" items="${distributiontypes}" path="distributiontypes" required="true" z="294EKacdvkuTlmG88p/dNsLeLWg="/>
+        <field:select field="sector" id="c_com_accoord_domain_Distribution_sector" items="${sectors}" path="sectors" required="true" z="d8ycXvCO1+g/navXgNHY/QKbEg4="/>
+        <field:input field="description" id="c_com_accoord_domain_Distribution_description" z="NNzFj34AiXn40dTR6yHLGJhzRkM="/>
+        <field:input field="number_units" id="c_com_accoord_domain_Distribution_number_units" validationMessageCode="field_invalid_number" z="4tRqwuVQOQmEjmtVtHL9jY0Fz30="/>
+        <field:input field="units" id="c_com_accoord_domain_Distribution_units" z="ZfndRqvnotMpSPHaGoeTWBaqaZQ="/>
+        <field:select field="owner" id="c_com_accoord_domain_Distribution_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="f+ZmHN89TqJWzjN8LlP5se6l5Is="/>
+        <field:select field="area" id="c_com_accoord_domain_Distribution_area" itemValue="id" items="${serviceareas}" path="/serviceareas" z="Hwfrtb7HF4kVA03zaSIMkpJev+U="/>
+    </form:update>
+</div>

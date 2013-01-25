@@ -1,0 +1,22 @@
+<aspectj>
+<aspects>
+<aspect name="com.accoord.domain.UserRole_Roo_JavaBean"/>
+<aspect name="com.accoord.domain.UserRole_Roo_ToString"/>
+<aspect name="com.accoord.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>
+<aspect name="com.accoord.domain.Organization_Roo_JavaBean"/>
+<aspect name="com.accoord.domain.UserEntity_Roo_ToString"/>
+<aspect name="com.accoord.domain.RoleEntity_Roo_Entity"/>
+<aspect name="com.accoord.domain.Organization_Roo_ToString"/>
+<aspect name="com.accoord.domain.RoleEntity_Roo_Configurable"/>
+<aspect name="com.accoord.domain.UserEntity_Roo_Configurable"/>
+<aspect name="com.accoord.domain.UserEntity_Roo_Entity"/>
+<aspect name="com.accoord.domain.UserEntity_Roo_JavaBean"/>
+<aspect name="com.accoord.domain.Organization_Roo_Configurable"/>
+<aspect name="com.accoord.domain.UserRole_Roo_Configurable"/>
+<aspect name="com.accoord.domain.UserRole_Roo_Entity"/>
+<aspect name="com.accoord.domain.RoleEntity_Roo_JavaBean"/>
+<aspect name="com.accoord.domain.Organization_Roo_Entity"/>
+<aspect name="com.accoord.domain.RoleEntity_Roo_ToString"/>
+</aspects>
+</aspectj>
+

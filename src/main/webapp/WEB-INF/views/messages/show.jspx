@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Message" object="${message}" path="/messages" z="u+4ht4VQI1vSIz4iBWnaG3VgsOY=">
+        <field:display field="message" id="s_com_accoord_domain_Message_message" object="${message}" z="zDtOS5z+OtwvMd35HjaDueNuJu4="/>
+        <field:display date="true" dateTimePattern="${message_created_date_format}" field="created" id="s_com_accoord_domain_Message_created" object="${message}" z="KFeo3iU2DtzINB2MY6hswPShdok="/>
+        <field:display field="owner" id="s_com_accoord_domain_Message_owner" object="${message}" z="VYnCLmCvICMpQnW4h55870v94Y4="/>
+        <field:display field="makepublic" id="s_com_accoord_domain_Message_makepublic" object="${message}" z="n3sGWdccfCJHne/h7vsVArl56CE="/>
+        <field:display field="picture" id="s_com_accoord_domain_Message_picture" object="${message}" z="KxhBSk1E/tSXslAFl6ehmGfQ9v4="/>
+        <field:display field="file" id="s_com_accoord_domain_Message_file" object="${message}" z="Pmput0glq/hQdvksreqN1463d78="/>
+        <field:display field="comments" id="s_com_accoord_domain_Message_comments" object="${message}" z="H8Xl0DleYnsRGd8szBx4NI+66qY="/>
+    <field:display field="assessmentarea" id="s_com_accoord_domain_Message_assessmentarea" object="${message}" z="2uDSqqh0kwOpGkCAOPp/VBdX+/s="/>
+        <field:display field="servicearea" id="s_com_accoord_domain_Message_servicearea" object="${message}" z="1SGqrwUDhyj2ue6C+SQfGij8wfE="/>
+        <field:display field="event" id="s_com_accoord_domain_Message_event" object="${message}" z="n7heuSZvIi6v/7JGqbX0EVkaTTk="/>
+    <field:display field="profile" id="s_com_accoord_domain_Message_profile" object="${message}" z="lYIwCbcln5Ge4BdJdvNvGzTdNG8="/>
+        <field:display field="orgprofile" id="s_com_accoord_domain_Message_orgprofile" object="${message}" z="CZCotFB+UdRnKLECNrPjn/mV+bE="/>
+    </page:show>
+</div>

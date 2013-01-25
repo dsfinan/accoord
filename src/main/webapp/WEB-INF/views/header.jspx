@@ -1,0 +1,61 @@
+<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page" 
+				xmlns:sec="http://www.springframework.org/security/tags"  
+				xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+				xmlns:c="http://java.sun.com/jsp/jstl/core" 
+				xmlns:spring="http://www.springframework.org/tags" version="2.0">
+				
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  
+ 
+
+  <spring:url var="banner" value="/resources/images/accoordLogo.png" />
+  <spring:url var="home" value="/" />
+  <spring:message code="button_home" var="home_label" />
+  <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
+    <img align="left" src="${banner}" />
+  </a>
+
+
+  <c:if test="${pageContext['request'].userPrincipal == null}">
+
+     <span style="float:right">
+    
+      <spring:url value="/login" var="login"/>
+      <a href="${login}">
+       <c:out value="Login"></c:out>
+      </a>
+    </span>  
+
+  </c:if>
+
+
+ 
+  <c:if test="${pageContext['request'].userPrincipal != null}">
+    <span style="float:right">
+      <spring:url value="/resources/j_spring_security_logout" var="logout"/>
+     
+     <sec:authentication property="principal.userObject" var="userObject"/>
+     <sec:authentication property="principal.userObject.id" var="userId"/>
+     <sec:authentication property="principal.userObject.profile.id" var="profileId"/>
+     <sec:authentication property="principal.userObject.organization.id" var="orgId"/>  
+     
+     <spring:url value="/userprofiles/${profileId}" var="profile_url"/>
+     <spring:url value="/orgprofiles/${orgId}" var="orgprofile_url"/>
+     <spring:url value="/resources/j_spring_security_logout" var="logout"/>
+      
+      <a href="${profile_url}">${userObject.firstname} ${userObject.lastname}</a> @
+      <a href="${orgprofile_url}"><sec:authentication property="principal.organization" /></a> |
+      <a href="${logout}">
+        <spring:message code="security_logout"/>
+      </a>
+    </span>
+  </c:if>
+  
+
+  
+  
+ 
+  
+
+</div>

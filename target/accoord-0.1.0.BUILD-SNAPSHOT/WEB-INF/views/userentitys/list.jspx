@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_UserEntity" items="${userentitys}" z="G3owvXv1q00FF7uM74OFjzUfHPc=">
+        <table:table data="${userentitys}" id="l_com_accoord_domain_UserEntity" path="/userentitys" z="we3mhTTLZZBZaAPxUN2cCkP7snI=">
+            <table:column id="c_com_accoord_domain_UserEntity_resetkey" property="resetkey" z="DnX4WivqEPt6pSSSoF6DJcd1/rA="/>
+            <table:column id="c_com_accoord_domain_UserEntity_email" property="email" z="RxAyoHv/MWMajqXwJ9zIoR0hs7c="/>
+            <table:column id="c_com_accoord_domain_UserEntity_password" property="password" z="5nv2ZpM6G7fn/jXpERFSt5/fnDE="/>
+            <table:column id="c_com_accoord_domain_UserEntity_username" property="username" z="SkvhbdWYk8Z/m7m8DGuNYbOpwJw="/>
+            <table:column id="c_com_accoord_domain_UserEntity_organization" property="organization" z="//QB+/9ktpAY5v22ZUQIuI91Ppc="/>
+            <table:column id="c_com_accoord_domain_UserEntity_verified" property="verified" z="f4DJqMMM/Hpfu+pLYoNVovHYLx4="/>
+        </table:table>
+    </page:list>
+</div>

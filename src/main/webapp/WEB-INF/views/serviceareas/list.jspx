@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_ServiceArea" items="${serviceareas}" z="zm+vWLGL+bwBlbqIx3czTtSy+VM=">
+        <table:table data="${serviceareas}" id="l_com_accoord_domain_ServiceArea" path="/serviceareas" z="VclAUlnjr1NWX9MBl2q0mjbSUk8=">
+            <table:column id="c_com_accoord_domain_ServiceArea_name" property="name" z="6634eiiW5idqYsBOSYGsVQBe/hU="/>
+            <table:column id="c_com_accoord_domain_ServiceArea_description" property="description" z="+nUV2jfia82LzVl/ooyjD9GfI0I="/>
+            <table:column id="c_com_accoord_domain_ServiceArea_created" property="created" z="qvxKor1oMpsWNYvtHp/Lx2cWsPo="/>
+            <table:column id="c_com_accoord_domain_ServiceArea_polygon" property="polygon" z="webhzE1PphGeXlVsHKn07v11jKA="/>
+            
+            
+        <table:column id="c_com_accoord_domain_ServiceArea_lastlat" property="lastlat" z="ElDPO59/ku+TIIh6y8h/2MJftKk="/>
+            <table:column id="c_com_accoord_domain_ServiceArea_lastlng" property="lastlng" z="97u+pNNWZCn/gXaAGk5XMhJR2jY="/>
+        </table:table>
+    </page:list>
+</div>

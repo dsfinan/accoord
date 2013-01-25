@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Warehouse" object="${warehouse}" path="/warehouses" z="J+3kwCUuFGNCfzaGonQMHnlsrNo=">
+        <field:display date="true" dateTimePattern="${warehouse_created_date_format}" field="created" id="s_com_accoord_domain_Warehouse_created" object="${warehouse}" z="QXs2E6/PpadWmxzR2xSjudHcvWM="/>
+        <field:display field="open" id="s_com_accoord_domain_Warehouse_open" object="${warehouse}" z="RqDMzMfC7RSG7lwj+ItUsRd37Ig="/>
+        <field:display field="address" id="s_com_accoord_domain_Warehouse_address" object="${warehouse}" z="9fAwdW6Qp+orXm+EhXfqwVdf1jM="/>
+        <field:display field="city" id="s_com_accoord_domain_Warehouse_city" object="${warehouse}" z="wsmfc+HAO9ZC48X+UJqTcQdUp54="/>
+        <field:display field="country" id="s_com_accoord_domain_Warehouse_country" object="${warehouse}" z="VUZmhQ6YP6BYbRIcUVJVqf5oTcU="/>
+        <field:display field="description" id="s_com_accoord_domain_Warehouse_description" object="${warehouse}" z="OQfV/HInFz8f4CCEpuZ/xqCQAGA="/>
+        <field:display field="lat" id="s_com_accoord_domain_Warehouse_lat" object="${warehouse}" z="gC3LIIQroBVsx3uWHudUH9ZqCIs="/>
+        <field:display field="lng" id="s_com_accoord_domain_Warehouse_lng" object="${warehouse}" z="JZtXSSDaCMObYimPAHR6M4vLByw="/>
+        <field:display field="organization" id="s_com_accoord_domain_Warehouse_organization" object="${warehouse}" z="P1nnQL9trVvSr989bCWkbb8qaiY="/>
+        
+    <field:display field="stock_items" id="s_com_accoord_domain_Warehouse_stock_items" object="${warehouse}" z="iEEof58S3F80KJaepKnc7z87D4c="/>
+    <field:display field="owner" id="s_com_accoord_domain_Warehouse_owner" object="${warehouse}" z="voO8rt///iL0Lp6hCUhOxlyTUp4="/>
+    </page:show>
+</div>

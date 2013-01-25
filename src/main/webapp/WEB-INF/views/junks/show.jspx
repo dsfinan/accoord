@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Junk" object="${junk}" path="/junks" z="TtZhf2CrmOBzR+k8MI57Y7IqwLg=">
+        <field:display field="text" id="s_com_accoord_domain_Junk_text" object="${junk}" z="iuxGgNZJRGtQiwYczZkZ1dj9IAU="/>
+    </page:show>
+</div>

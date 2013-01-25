@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+  <definition extends="default" name="index">
+    <put-attribute name="body" value="/WEB-INF/views/index.jspx"/>
+  </definition>
+
+  <definition extends="public" name="dataAccessFailure">
+    <put-attribute name="body" value="/WEB-INF/views/dataAccessFailure.jspx"/>
+  </definition>
+
+  <definition extends="public" name="resourceNotFound">
+    <put-attribute name="body" value="/WEB-INF/views/resourceNotFound.jspx"/>
+  </definition>
+
+  <definition extends="public" name="uncaughtException">
+    <put-attribute name="body" value="/WEB-INF/views/uncaughtException.jspx"/>
+  </definition>
+
+<definition extends="default" name="login">
+        <put-attribute name="body" value="/WEB-INF/views/login.jsp"/>
+    </definition>
+    
+
+<definition extends="default" name="home">
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp"/>
+    </definition>    
+
+
+<definition extends="default" name="register">
+        <put-attribute name="body" value="/WEB-INF/views/register.jsp"/>
+</definition>    
+
+<definition extends="default" name="forgotpassword">
+        <put-attribute name="body" value="/WEB-INF/views/forgotpassword.jsp"/>
+</definition>    
+
+<definition extends="default" name="resetpassword">
+        <put-attribute name="body" value="/WEB-INF/views/resetpassword.jsp"/>
+</definition>    
+
+<definition extends="default" name="changepassword">
+        <put-attribute name="body" value="/WEB-INF/views/changepassword.jsp"/>
+</definition>    
+
+<definition extends="default" name="addnewuser">
+        <put-attribute name="body" value="/WEB-INF/views/addnewuser.jsp"/>
+</definition>    
+
+<definition extends="default" name="recovery">
+        <put-attribute name="body" value="/WEB-INF/views/recovery.jspx"/>
+</definition>    
+
+<definition extends="default" name="legal">
+        <put-attribute name="body" value="/WEB-INF/views/legal.jspx"/>
+</definition>  
+
+<definition extends="default" name="about">
+        <put-attribute name="body" value="/WEB-INF/views/about.jspx"/>
+</definition> 
+
+<definition extends="default" name="help">
+        <put-attribute name="body" value="/WEB-INF/views/help.jspx"/>
+</definition> 
+
+</tiles-definitions>

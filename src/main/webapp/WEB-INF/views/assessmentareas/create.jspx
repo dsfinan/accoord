@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:maps="urn:jsptagdir:/WEB-INF/tags/map" xmlns:sec="http://www.springframework.org/security/tags" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+  <c:if test="${pageContext['request'].userPrincipal != null}">
+<sec:authentication property="principal.userObject.id" var="userId"/>
+<sec:authentication property="principal.userObject" var="userObject"/>
+  </c:if>
+
+<c:set value="${sessionScope.sessionEventId}" var="eventId"/>
+<c:set value="${sessionScope.toCoverageEventName}" var="eventName"/>
+  <spring:url value="/events/${eventId}" var="event_url"/>
+  <spring:url value="/" var="system_url"/>
+
+
+    
+<c:choose> 
+<c:when test="${empty sessionScope.lastZoom || empty sessionScope.lastLat || empty sessionScope.lastLng}">
+	<c:set value="${event.zoomlevel}" var="zoom"/>
+	<c:set value="${event.lat},${event.lng }" var="center"/>
+</c:when>
+<c:otherwise>
+	<c:set value="${sessionScope.lastZoom}" var="zoom"/>
+	<c:set value="${sessionScope.lastLat},${sessionScope.lastLng}" var="center"/>
+</c:otherwise>
+</c:choose> 
+    
+
+<script type="text/javascript">
+
+
+// set the inital map variables for full scope
+var map;
+var latlng = new google.maps.LatLng(${center});
+var zoom = ${zoom};
+var savePaths = [];
+var assessmentPaths = [];
+var servicePaths = [];
+var securityMarkers = [];
+var eventId = ${eventId};
+var userId = ${userId};
+
+
+$(document).ready(function(){
+
+
+	
+	//build map
+	
+    var myOptions = {
+    	      zoom: zoom,
+    	      center: latlng,
+    	      mapTypeId: google.maps.MapTypeId.HYBRID
+    	    };
+    	    
+    	        map = new google.maps.Map(document.getElementById('map_canvas'),
+    	        myOptions);
+    	   
+		//setup Poly creator
+		creator = new PolygonCreator(map);
+		//creator.pen.polygon.setColor('blue');
+		
+  	//get event data
+	  $.getJSON("/ajax/returnEvent", {id: +eventId}, function(event) {
+	      if (event != null) {
+	    	
+	    	//build assessment areas
+	    	if (event.assessmentArea != null) {
+	    		addAssessmentPolys(event.assessmentareas);
+	        }
+	    	if (event.serviceArea != null) {
+	    		addServicePolys(event.serviceareas);
+	        }
+	    	if (event.securityIncident != null) {
+	    		//addSecurityMarkers(event.securityIncident);
+	        }
+	  		
+	      }else{
+	    	  alert('No data');
+	            }
+	  });     
+      
+    	
+    	// listen for map changes and set new zoom and center to session variable via ajax			
+    	google.maps.event.addListener(map, 'idle', function(){
+
+    		newZoom = map.getZoom();
+    		newLat = map.getCenter().lat();
+    		newLng = map.getCenter().lng();
+    		
+    	    $.getJSON("/ajax/setMapState", {zoom: +newZoom, lat: +newLat, lng: +newLng}, function(status) {
+    	        if (status != null) {
+    	        	alert (status);
+    	        } else {
+    				alert('something failed');
+    	        }
+    	    });
+
+    		
+    	});
+    	
+    	
+ 
+    	
+    	
+    	
+});
+
+
+function addPolys(){
+	creator = new PolygonCreator(map);
+}
+
+
+function resetPoly(){
+	creator.destroy();
+	creator=null;
+	creator=new PolygonCreator(map);
+	document.getElementById('_polygon_id').value='';
+}
+
+
+function setPoly(){
+	if (null==creator.showData()){
+		alert('Please create a polygon before saving')
+	}else{
+		document.getElementById('_polygon_id').value=creator.showData();
+		document.getElementById('_lastlng_id').value=map.getCenter().lng();
+		document.getElementById('_lastlat_id').value=map.getCenter().lat();
+		document.getElementById('_lastzoomlevel_id').value=map.getZoom();
+		//document.getElementById('_owner_id').value=userId;
+	}
+}
+
+//render exisiting areas and markers and set rollover text
+
+
+function addAssessmentPolys(assessmentAreas){
+
+	//iterate over the assessmentAreas
+	$.each(assessmentAreas, function(key, AssessmentArea) {
+	
+		//parse out lat lngs
+		pointHolder = [];
+		pathHolder = [];
+		points = AssessmentArea.polygon;
+		points = points.replace(/[\)]/g, "");
+		points = points.split("(");
+		
+		//check for blanks, if not blank put into array
+		
+		$.each(points, function(key, point) {
+			if (point != ""){
+								
+				//split the points by the comma
+				pointsArray = point.split(',');
+				lat = pointsArray[0];
+				lng = pointsArray[1];
+				latLng = new google.maps.LatLng(lat, lng);
+				pathHolder.push(latLng);
+				
+				}
+			
+		});
+
+	
+		assessmentPoly = new google.maps.Polygon({
+			path: pathHolder,
+			clickable: false,	
+			strokeColor: '#FF0000',
+			strokeOpacity: 0.3,
+			strokeWeight: 2,
+			fillColor: '#FF0000',
+			fillOpacity: 0.2,
+			map: map});
+		
+		//set custom properties
+		assessmentPoly.myCategory = AssessmentArea.created;                                 
+		assessmentPoly.myDate = AssessmentArea.owner;
+	
+			
+		
+		assessmentPaths.push(assessmentPoly);
+		pathHolder=[];
+
+	});
+
+	
+	
+	
+
+}
+
+
+function addServicePolys(serviceAreas){
+	
+	//iterate over the assessmentAreas
+	$.each(serviceAreas, function(key, serviceArea) {
+		
+	
+		//parse out lat lngs
+		pointHolder = [];
+		pathHolder = [];
+		points = serviceArea.polygon;
+		points = points.replace(/[\)]/g, "");
+		points = points.split("(");
+		
+		//check for blanks, if not blank put into array
+		
+		$.each(points, function(key, point) {
+			if (point != ""){
+								
+				//split the points by the comma
+				pointsArray = point.split(',');
+				lat = pointsArray[0];
+				lng = pointsArray[1];
+				latLng = new google.maps.LatLng(lat, lng);
+				pathHolder.push(latLng);
+				
+				}
+			
+		});
+
+
+		servicePoly = new google.maps.Polygon({
+			path: pathHolder,
+			clickable: false,	
+			strokeColor: '#415776',
+			strokeOpacity: 0.3,
+			strokeWeight: 2,
+			fillColor: '#415776',
+			fillOpacity: 0.2,
+			map: map});
+		
+		//set custom properties
+		servicePoly.myCategory = serviceArea.created;                                 
+		servicePoly.myDate = serviceArea.owner;
+
+
+		
+		
+		servicePaths.push(servicePoly);
+		pathHolder=[];
+
+	});
+
+	
+}
+
+
+function addSecurityMarkers (incidents){
+	
+	//set up the icon
+	iconPath ="/resources/images/icons/securityIcon.png";
+	
+	//create infowindow before loop
+	infowindowSecIncident = new google.maps.InfoWindow();
+	
+	//iterate over the assessmentAreas
+	$.each(incidents, function(key, incident) {
+		
+		//build the url for area
+		incidentUrl = '/securityincidents/'+ incident.id;
+	
+		var icon = new google.maps.MarkerImage(iconPath,
+				new google.maps.Size(25, 25),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(6, 12),
+				new google.maps.Size(12, 12)
+				);
+		
+		lat = incident.lat;
+		lng = incident.lng;
+		latLng = new google.maps.LatLng(lat, lng);
+		
+		marker = new google.maps.Marker({       
+			position: latLng,
+			clickable: false,
+			icon: icon,
+			title: 'Security Event: ' + incident.subject,
+			map: map
+			}); 
+		
+			
+			//push marker into array to check later if marker exists
+			securityMarkers.push(marker);	
+			
+	});
+}
+
+</script>    
+
+
+<div id="greeting" style="width:600px; padding:5px">  
+
+<h3>Find where you are working and outline your assessment area</h3>
+			Zoom into an area and draw the area where you are working.
+			<p/>
+
+<div id="breadcrumbs" style="padding:3px">
+<a alt="Accoord" href="${fn:escapeXml(system_url)}" title="Accoord">Home</a>
+<c:out value=" &gt;&gt; "/>
+<b>Event:</b>
+<c:out value=" "/>
+<a alt="Accoord" href="${fn:escapeXml(event_url)}" title="Accoord">${eventName}</a>
+<c:out value=" &gt;&gt; "/>
+<b>Create Assessment Area</b>
+
+</div>
+
+</div>  
+
+    
+<table border="0" cellpadding="0" cellspacing="0" style="font-family:arial,helvetica,sans-serif;" width="100%">
+	<tbody>
+		<tr>
+			<td valign="top" width="500px">
+			
+
+			<div>
+
+		<input id="reset" onclick="resetPoly()" type="button" value="Reset"/>
+
+		<input id="showData" onclick="setPoly()" type="button" value="Set"/>
+				
+		
+			</div>
+			<p/>    
+    
+    
+        	<div id="map_canvas" style="width:600px; height:400px; margin-left: auto; margin-right: auto"/>
+    		
+
+ 
+</td>
+			
+<td valign="top">   
+    
+    <form:create id="fc_com_accoord_domain_AssessmentArea" modelAttribute="assessmentArea" path="/assessmentareas" render="${empty dependencies}" z="K+e9igrp5kr5NNZwjkqEh20+sgc=">
+        
+        
+        <field:placeObject field="event" id="c_com_accoord_domain_AssessmentArea_event" multiple="false" object="${sessionEvent}" path="/events" z=""/>
+
+        <field:placeObject field="owner" id="c_com_accoord_domain_AssessmentArea_owner" multiple="false" object="${userObject}" path="/userentitys" z=""/>
+        
+           
+        
+        
+        <field:input field="name" id="c_com_accoord_domain_AssessmentArea_name" required="true" z="v1wQT1slTZNfkbr7Fqa3CWli6EU="/>
+        <field:textarea field="description" id="c_com_accoord_domain_AssessmentArea_description" z="user-managed"/>
+        <field:datetime dateTimePattern="${assessmentArea_created_date_format}" field="created" id="c_com_accoord_domain_AssessmentArea_created" z="E0Z7q3Hv7ZPejHhRvWurjmRaIyI="/>
+        <field:input field="polygon" id="c_com_accoord_domain_AssessmentArea_polygon" required="true" z="bIAwQojI7zH7jTrVTHzckNr0HGU="/>
+ 
+  <!--       <field:input field="lastLat" id="c_com_accoord_domain_AssessmentArea_lastLat" type="hidden" validationMessageCode="field_invalid_number" z="user-managed"/>
+        <field:input field="lastLng" id="c_com_accoord_domain_AssessmentArea_lastLng" type="hidden" validationMessageCode="field_invalid_number" z="user-managed"/>
+        <field:input field="lastZoomLevel" id="c_com_accoord_domain_AssessmentArea_lastZoomLevel" type="hidden" validationMessageCode="field_invalid_number" z="user-managed"/>
+        
+                <field:select field="event" id="c_com_accoord_domain_AssessmentArea_event" itemValue="id" items="${events}" path="/events" required="true" z="dvghzP1ez0uH78r7djPBaQ1o9vs="/>
+  
+                      <field:select field="owner" id="c_com_accoord_domain_AssessmentArea_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="r/ZIx8hrmnxJHWmIEYqSve9GhIo="/>
+ 
+                     <field:simple field="rapidassessments" id="c_com_accoord_domain_AssessmentArea_rapidassessments" messageCode="entity_reference_not_managed" messageCodeAttribute="Rapid Assessment" z="lRioJE3PMCKQIUTvUuzMdcsFrmk="/>
+                    <field:simple field="messages" id="c_com_accoord_domain_AssessmentArea_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="VaBPDs7rlaUS8XxceKZgf5SkRqc="/>
+                 
+   
+  -->      
+    
+ 
+                    
+   <field:input field="lastlat" id="c_com_accoord_domain_AssessmentArea_lastlat" validationMessageCode="field_invalid_number" z="lRN5CeMJhsD+eeq39uQGvwJ0o7g="/>
+                        <field:input field="lastlng" id="c_com_accoord_domain_AssessmentArea_lastlng" validationMessageCode="field_invalid_number" z="RrQwuOMeQOtHh38YguYmQ46BGmQ="/>
+                        <field:input field="lastzoomlevel" id="c_com_accoord_domain_AssessmentArea_lastzoomlevel" validationMessageCode="field_invalid_number" z="Qow3OutjwA+YO0FArcaFfXJXKpE="/>
+                   </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_accoord_domain_AssessmentArea" render="${not empty dependencies}" z="9Oh13Y7KlyqUVPQcsFqpQ7LOgFs="/>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>

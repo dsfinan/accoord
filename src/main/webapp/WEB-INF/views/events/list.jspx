@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Event" items="${events}" z="IaqS2CIPS67mg0kS83Zbd1gWDX8=">
+        <table:table data="${events}" id="l_com_accoord_domain_Event" path="/events" z="47IBHZ0fiNW4D9oPQiE0B5MZlkw=">
+            <table:column id="c_com_accoord_domain_Event_name" property="name" z="V+54zJacOxu3OWc/s539H4DlJHA="/>
+            <table:column id="c_com_accoord_domain_Event_description" property="description" z="zd1E6DsIWAgVtvBRtlJ2ZmQPX4c="/>
+            <table:column id="c_com_accoord_domain_Event_country" property="country" z="HbhmKV1isMiUS+KV3DB39cjXg7U="/>
+            
+            
+            <table:column id="c_com_accoord_domain_Event_lat" property="lat" z="+XeqyHqcsqgXJ/S53W76EtuFtRc="/>
+        
+        <table:column id="c_com_accoord_domain_Event_created" property="created" z="9rzHDFmsh0KBk59u8dunTH8koXo="/>
+        <table:column id="c_com_accoord_domain_Event_eventtype" property="eventtype" z="W9gfCku17jK80s05b//SJ8m/O5s="/>
+        </table:table>
+    </page:list>
+</div>

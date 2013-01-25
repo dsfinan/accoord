@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Message" items="${messages}" z="tpSwLuIMt75CpmDMnvWL1IvBV+s=">
+        <table:table data="${messages}" id="l_com_accoord_domain_Message" path="/messages" z="jDPZ/jStLhM0PzDs4yWjKKRMfTI=">
+            <table:column id="c_com_accoord_domain_Message_message" property="message" z="f6yw8zv9eqG3CMHILkNlZSdDREY="/>
+            <table:column id="c_com_accoord_domain_Message_created" property="created" z="k+tSFE2mO8b5PcuEO6HkVxbH2bc="/>
+            <table:column id="c_com_accoord_domain_Message_owner" property="owner" z="huSyPwHN/HiWHXmU/88B8kOr8Dw="/>
+            <table:column id="c_com_accoord_domain_Message_makepublic" property="makepublic" z="KME9d/7F6iXVsKr/xTOgxB6lGq4="/>
+            <table:column id="c_com_accoord_domain_Message_picture" property="picture" z="yfoMuaGlLbcloLQ9uOlfu1HGdEo="/>
+            <table:column id="c_com_accoord_domain_Message_file" property="file" z="3Dki19N0cR7lKRI1FsGLq2thLdE="/>
+        </table:table>
+    </page:list>
+</div>

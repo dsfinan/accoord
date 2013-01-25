@@ -1,0 +1,122 @@
+<div 	xmlns:c="http://java.sun.com/jsp/jstl/core"  
+		xmlns:spring="http://www.springframework.org/tags" 
+		xmlns:sec="http://www.springframework.org/security/tags" 
+		xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+		xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+		
+		
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+
+  <spring:url var="loading" value="/resources/images/ajax-loader.gif" />
+
+
+
+<script type="text/javascript">
+
+
+
+
+$(document).ready(function(){
+	
+    	    	//REMOVE only for debuging
+    	    	$.getJSON(rootPath+"/ajax/returnUsers", function(users) {
+    	    		
+				//do nothing, just check firebug
+    	    	});
+    	    	$.getJSON(rootPath+"/ajax/returnOrgs", function(orgs) {
+    	    	//do nothing, just check firebug
+        	    });
+	    		$.getJSON(rootPath+"/ajax/returnUserRoles", function(uRoles) {
+	        	//do nothing, just check firebug
+	    	    });
+	    		$.getJSON(rootPath+"/ajax/returnRoles", function(roles) {
+	    		//do nothing, just check firebug
+	    		});
+
+    	        
+	    $.getJSON(rootPath+"/ajax/returnEvents", function(events) {
+	    	        if (events != null) {
+	    	        	//send JSON to updateMap
+	    	           	drawEventsMap(events); 
+	      				drawSysDashboard(events);
+	    				buildEventsTimeline(events);
+						
+	    	        } else {
+	    				alert('There was a problem getting data from the server');
+	    	        }
+	    });
+
+	    	   
+
+	
+});
+
+
+
+</script>
+  
+
+
+  
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+
+    
+    <tr>
+    
+        <div id="timelinediv" style="width:100%; padding:5px">  
+			<div id="my-timeline" style="height: 125px; width:99%; border: 1px solid #aaa">
+ 				<b>Loading Timeline, please wait....</b>
+ 				<p /><img  src="${loading}" />
+ 			</div>
+		</div> 
+    
+ 		<td valign="top" width="600px"> <!-- This is the map  and msg column -->
+
+
+    	<div id="map_canvas" style="width:590px; height:400px; margin-left: auto; margin-right: auto" >
+    				<b>Loading Map, please wait....</b>
+				 	<p /><img  src="${loading}" />
+    	</div>
+    	
+
+
+
+        </td>
+
+    
+ 		<td valign="top"> <!-- This is the info column -->
+ 
+
+ 			<p />
+    		
+			<div id="dashboard">
+			<div id="dashboardText" style="padding: 5px">
+			<h4>Use the controls to filter and view response events over time.  Click on the map marker to visit a specific response event</h4>
+			</div>
+				<div id="CatSelect" style="padding: 5px">    
+				 	<b>Loading Charts, please wait....</b>
+				 	<p /><img  src="${loading}" />
+				</div>
+				<div id="control" style='padding: 5px; height: 50px;'></div>
+				<div id="piechart_div" style="padding: 5px">..</div>
+				<div id="barChart" style="padding: 5px">..</div>
+				<div id="eventDataTable" style="padding: 25px">..</div>
+			</div>
+
+		</td>      
+    </tr>
+
+</tbody>
+
+</table>
+
+
+</div>
+

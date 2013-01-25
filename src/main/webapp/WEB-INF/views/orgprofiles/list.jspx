@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_OrgProfile" items="${orgprofiles}" z="Ukbq0TZQ+I+A+if7n6R4zQwf9YE=">
+        <table:table data="${orgprofiles}" id="l_com_accoord_domain_OrgProfile" path="/orgprofiles" z="j+TB9y7bNZOkKsRWcUvxyhm460o=">
+            
+            <table:column id="c_com_accoord_domain_OrgProfile_about" property="about" z="S9rEC2MKBIkUUATRZCZ7A/Ixv5A="/>
+            <table:column id="c_com_accoord_domain_OrgProfile_orglogo" property="orglogo" z="b3y8Pn1sODpuIfv1Kdx/RvBSUbU="/>
+            <table:column id="c_com_accoord_domain_OrgProfile_website" property="website" z="BVEMkHSIohjjYbXQBuZG/NUCeFM="/>
+            <table:column id="c_com_accoord_domain_OrgProfile_messages" property="messages" z="b+RU+6vNYOcjm8J/1MAdinugxD8="/>
+        
+   </table:table>
+    </page:list>
+</div>

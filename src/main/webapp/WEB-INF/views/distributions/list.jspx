@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Distribution" items="${distributions}" z="RLt3iKb63Pd7mrLyuYOow5HZb3k=">
+        <table:table data="${distributions}" id="l_com_accoord_domain_Distribution" path="/distributions" z="m+GN1RZnMEp5s6/KfbrZ3Zebp3A=">
+            <table:column id="c_com_accoord_domain_Distribution_dateperformed" property="dateperformed" z="C33adLQ8VTB0SSHlg1cij94V7LE="/>
+            <table:column id="c_com_accoord_domain_Distribution_distributiontype" property="distributiontype" z="agXmmYKUfM/XK0KL3nEjPRoLMEA="/>
+            <table:column id="c_com_accoord_domain_Distribution_sector" property="sector" z="IhfpzN5vES/+XxPl/uPMU3Gh+N0="/>
+            <table:column id="c_com_accoord_domain_Distribution_description" property="description" z="sr3uxUKorN434BKEkWvqbhY6BTI="/>
+            <table:column id="c_com_accoord_domain_Distribution_number_units" property="number_units" z="UFcTMCoqN2d4XgWGGH+xKRg1Bo4="/>
+            <table:column id="c_com_accoord_domain_Distribution_units" property="units" z="laWeQN0KFOCZvaMdfh2ElPWgi0o="/>
+        </table:table>
+    </page:list>
+</div>

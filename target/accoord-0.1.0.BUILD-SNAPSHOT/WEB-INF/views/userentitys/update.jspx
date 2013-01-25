@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_UserEntity" modelAttribute="userEntity" path="/userentitys" versionField="Version" z="2N/+bVDQJ/Fzkyx5UOhS81XvqeU=">
+        <field:input field="resetkey" id="c_com_accoord_domain_UserEntity_resetkey" required="true" z="dz7n9Nzz6cISM8eiatZlQDRJgjg="/>
+        <field:input field="email" id="c_com_accoord_domain_UserEntity_email" required="true" validationMessageCode="field_invalid_email" z="JJ9HWtnEMW2nkov33VDHUiFnh8Y="/>
+        <field:input field="password" id="c_com_accoord_domain_UserEntity_password" required="true" z="Cpg7+eKrrEvq8MoU7RGQNEoE58U="/>
+        <field:input field="username" id="c_com_accoord_domain_UserEntity_username" required="true" z="5MWoiLIW1DaXXFyanMIrs8attzQ="/>
+        <field:select field="organization" id="c_com_accoord_domain_UserEntity_organization" itemValue="id" items="${organizations}" path="/organizations" z="XCGhy6rYHSP/G6LsQxLuCihMFbo="/>
+        <field:checkbox field="verified" id="c_com_accoord_domain_UserEntity_verified" z="mxVCSYb2qh+9WW0KqsTkHL5VNJM="/>
+    </form:update>
+</div>

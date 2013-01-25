@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_UserEntity" object="${userentity}" path="/userentitys" z="RVd8XI+saMKpG+ZW/MpdckjvkM4=">
+        <field:display field="resetkey" id="s_com_accoord_domain_UserEntity_resetkey" object="${userentity}" z="/gq/ZEzrhpacID98xWRsGDoiMUo="/>
+        <field:display field="email" id="s_com_accoord_domain_UserEntity_email" object="${userentity}" z="UC/15w60bvnwzR+ssbNpCBXUmSU="/>
+        <field:display field="password" id="s_com_accoord_domain_UserEntity_password" object="${userentity}" z="JEyt+fDrAkEVO8broL93LvL9mVA="/>
+        <field:display field="username" id="s_com_accoord_domain_UserEntity_username" object="${userentity}" z="xhMU5mjkPn7OvPigom64GvOd1dM="/>
+        <field:display field="organization" id="s_com_accoord_domain_UserEntity_organization" object="${userentity}" z="CJXlew7L+2g/KiWl0kpUygd+7gg="/>
+        <field:display field="verified" id="s_com_accoord_domain_UserEntity_verified" object="${userentity}" z="ocC+1oUc0QXL3IHJY+vgtelE3oA="/>
+    </page:show>
+</div>

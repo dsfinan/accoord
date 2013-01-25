@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Equipment" object="${equipment}" path="/equipments" z="+CACW0NdCQc64fPlyTYL72aECZ8=">
+        <field:display date="true" dateTimePattern="${equipment_created_date_format}" field="created" id="s_com_accoord_domain_Equipment_created" object="${equipment}" z="MTLeDXPB8765rWr2w6X3nka2gYI="/>
+        <field:display field="sector" id="s_com_accoord_domain_Equipment_sector" object="${equipment}" z="jNVil742V5txsWkLoL/fL+CFWp8="/>
+        <field:display field="description" id="s_com_accoord_domain_Equipment_description" object="${equipment}" z="kgQ9MsZNiMCfewvaLYnulbMM634="/>
+        
+        
+        
+        
+        
+        
+        <field:display field="area" id="s_com_accoord_domain_Equipment_area" object="${equipment}" z="qXQuIncn9v1W8bQYmk1XLZoOK3w="/>
+    <field:display field="lat" id="s_com_accoord_domain_Equipment_lat" object="${equipment}" z="cRT9AlLoitdSmN8MiIDOrycVRxw="/>
+        <field:display field="lng" id="s_com_accoord_domain_Equipment_lng" object="${equipment}" z="ehj58L+tZV5FSKLcaoughgpprwc="/>
+    <field:display field="lastlat" id="s_com_accoord_domain_Equipment_lastlat" object="${equipment}" z="CfiYUfPwWAeBJSiH/pLAGBN82pA="/>
+        <field:display field="lastlng" id="s_com_accoord_domain_Equipment_lastlng" object="${equipment}" z="qw1II2dhdVzWVJQLhlNEWT6zzYg="/>
+        <field:display field="lastzoomlevel" id="s_com_accoord_domain_Equipment_lastzoomlevel" object="${equipment}" z="hum0642ak198E0Q04zmi6ZuxU1s="/>
+    <field:display field="owner" id="s_com_accoord_domain_Equipment_owner" object="${equipment}" z="JKXVPSGwv4nGhs1OZoCcEqP0E7w="/>
+    </page:show>
+</div>

@@ -1,0 +1,18 @@
+  
+<div xmlns:spring="http://www.springframework.org/tags" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <title>Accoord Recovery</title>
+
+    <h4>Recovery</h4>
+ 
+ <p>Recovery is a tool that allows organizations to collaborate and map out projects and activities associated with recovery and development projects.</p>
+
+ <p><b>Accoord Recovery is currently under development</b></p>
+
+</div>
+

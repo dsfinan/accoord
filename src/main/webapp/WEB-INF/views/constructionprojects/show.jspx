@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_ConstructionProject" object="${constructionproject}" path="/constructionprojects" z="aHzl/GPmuLBdra7tzpJCenbZXDQ=">
+        <field:display date="true" dateTimePattern="${constructionProject_createddate_date_format}" field="createddate" id="s_com_accoord_domain_ConstructionProject_createddate" object="${constructionproject}" z="IvjGIPVhvcJuBvBF+BIYqtU7kPY="/>
+        <field:display field="owner" id="s_com_accoord_domain_ConstructionProject_owner" object="${constructionproject}" z="unycNPNUaS3MjRoj4xtmK+siGoM="/>
+        
+        <field:display field="sheltertype" id="s_com_accoord_domain_ConstructionProject_sheltertype" object="${constructionproject}" z="zb/pKZz+iprmpji0ehISwm2HYUw="/>
+        <field:display field="description" id="s_com_accoord_domain_ConstructionProject_description" object="${constructionproject}" z="rLLEVj/08ku1S3S/hg+HbGjizIA="/>
+        <field:display date="true" dateTimePattern="${constructionProject_estimatedstartdate_date_format}" field="estimatedstartdate" id="s_com_accoord_domain_ConstructionProject_estimatedstartdate" object="${constructionproject}" z="tn/RrsC27xOp6fD7N5Giaeyqjng="/>
+        <field:display date="true" dateTimePattern="${constructionProject_estimatedenddate_date_format}" field="estimatedenddate" id="s_com_accoord_domain_ConstructionProject_estimatedenddate" object="${constructionproject}" z="lSn4iJdsJoKUpvw2eIUc10n4kt8="/>
+        <field:display field="targetnumberofunits" id="s_com_accoord_domain_ConstructionProject_targetnumberofunits" object="${constructionproject}" z="hc3+XzP+5gAxfCPZkji1xbpiuvA="/>
+        <field:display field="attachment" id="s_com_accoord_domain_ConstructionProject_attachment" object="${constructionproject}" z="dAeWaSMSSc0ujpbKgqIc8IgELe8="/>
+        <field:display field="area" id="s_com_accoord_domain_ConstructionProject_area" object="${constructionproject}" z="9tzw9E7OYkCcvgc1KqMKOJDd/U0="/>
+        <field:display field="updates" id="s_com_accoord_domain_ConstructionProject_updates" object="${constructionproject}" z="wSsByld1nBzz/TtccOlAIApNDKE="/>
+    
+    <field:display field="constructiontype" id="s_com_accoord_domain_ConstructionProject_constructiontype" object="${constructionproject}" z="wmnIhhT4fHJ8JIIrHWeapzqRV8I="/>
+    </page:show>
+</div>

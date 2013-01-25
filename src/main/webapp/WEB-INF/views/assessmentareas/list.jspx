@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_AssessmentArea" items="${assessmentareas}" z="VX2DLxIT8Brp/LzMoHoBh5fVAiA=">
+        <table:table data="${assessmentareas}" id="l_com_accoord_domain_AssessmentArea" path="/assessmentareas" z="3y3aNRUbAe5JAWxonZDhAHtZYN4=">
+            <table:column id="c_com_accoord_domain_AssessmentArea_name" property="name" z="2X5qUD6ecBipbNisW0EQWHZu6zY="/>
+            <table:column id="c_com_accoord_domain_AssessmentArea_description" property="description" z="Hosk8tpDB1/7Lh8qdjA6IpM9NJQ="/>
+            <table:column id="c_com_accoord_domain_AssessmentArea_created" property="created" z="d1NcnK8Ae0NlbxJb9uBI6fAjBFs="/>
+            <table:column id="c_com_accoord_domain_AssessmentArea_polygon" property="polygon" z="07PJo2lhn2j2pvmupPeeQ2DhU9k="/>
+            
+            
+        <table:column id="c_com_accoord_domain_AssessmentArea_lastlat" property="lastlat" z="gNt4V25OAlgPVnRsqApxil/MDcE="/>
+            <table:column id="c_com_accoord_domain_AssessmentArea_lastlng" property="lastlng" z="ZYeln25wWuLdnrJ1M12VuYFhzVs="/>
+        </table:table>
+    </page:list>
+</div>

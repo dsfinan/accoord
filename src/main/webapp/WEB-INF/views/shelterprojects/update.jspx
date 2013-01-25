@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_ShelterProject" modelAttribute="shelterProject" path="/shelterprojects" z="FwMtZBDfC12akzASYYgP2kCbpec=">
+        
+        
+        
+        
+        
+        <field:textarea field="attachment" id="c_com_accoord_domain_ShelterProject_attachment" z="SRZZlq7TRSV0NrkNV38vwjxCLpg="/>
+        <field:select field="area" id="c_com_accoord_domain_ShelterProject_area" itemValue="id" items="${serviceareas}" path="/serviceareas" required="true" z="QFYQXsw9VOml+walYQlj5L+Unzo="/>
+        <field:simple field="updates" id="c_com_accoord_domain_ShelterProject_updates" messageCode="entity_reference_not_managed" messageCodeAttribute="Shelter Update" z="hLGGH+RwcyS40WO/C4/mZhv9K70="/>
+    <field:datetime dateTimePattern="${shelterProject_createddate_date_format}" field="createddate" id="c_com_accoord_domain_ShelterProject_createddate" z="LsV1vgfsL/0b9iQBlYpg6Wn8EDY="/>
+        <field:select field="sheltertype" id="c_com_accoord_domain_ShelterProject_sheltertype" items="${sheltertypes}" path="sheltertypes" required="true" z="sLNWpjklSMZDw08aW2PTrllSTLg="/>
+        <field:datetime dateTimePattern="${shelterProject_estimatedstartdate_date_format}" field="estimatedstartdate" id="c_com_accoord_domain_ShelterProject_estimatedstartdate" required="true" z="BNH2k6EqRNxdo3zwh9VC75U3JMk="/>
+        <field:datetime dateTimePattern="${shelterProject_estimatedenddate_date_format}" field="estimatedenddate" id="c_com_accoord_domain_ShelterProject_estimatedenddate" z="2gZmbvbhf5YhgC5TBZnVzSmNeFQ="/>
+        <field:input field="targetnumberofunits" id="c_com_accoord_domain_ShelterProject_targetnumberofunits" required="true" validationMessageCode="field_invalid_number" z="afNH1ltI7OlYHiwuvCgaj0IIvPY="/>
+    </form:update>
+</div>

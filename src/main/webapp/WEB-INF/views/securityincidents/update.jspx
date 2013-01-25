@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_SecurityIncident" modelAttribute="securityIncident" path="/securityincidents" z="u/bPMPhwhnslJEnX2+582oFDnow=">
+        
+        <field:input field="subject" id="c_com_accoord_domain_SecurityIncident_subject" z="Ez1kvTcuEQo8A6Lov/XpcFPLEv0="/>
+        <field:select field="type" id="c_com_accoord_domain_SecurityIncident_type" items="${securityincidenttypes}" path="securityincidenttypes" required="true" z="auGWA5Oa1q9mA4FIFLo/6ZPzTNc="/>
+        <field:input field="description" id="c_com_accoord_domain_SecurityIncident_description" z="eY3nNUSowuP6X+t0Q6b31Ib2qH0="/>
+        
+        
+        
+        <field:select field="event" id="c_com_accoord_domain_SecurityIncident_event" itemValue="id" items="${events}" path="/events" required="true" z="44UwXb1nICfUR8MhwYpE06X4lZU="/>
+    <field:select field="owner" id="c_com_accoord_domain_SecurityIncident_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="yJFGBwZW0SnePTTH7cHwqaL+VWo="/>
+    <field:datetime dateTimePattern="${securityIncident_incidentdate_date_format}" field="incidentdate" id="c_com_accoord_domain_SecurityIncident_incidentdate" required="true" z="dgwRNt2MNIoVWgTY8QUwtuS9hEk="/>
+        <field:input field="lat" id="c_com_accoord_domain_SecurityIncident_lat" validationMessageCode="field_invalid_number" z="TfPVYE1/XDArmzpVvwzJs2o6xc4="/>
+        <field:input field="lng" id="c_com_accoord_domain_SecurityIncident_lng" validationMessageCode="field_invalid_number" z="+xN8NA25rQjvpnE02G+5cedsuXQ="/>
+    </form:update>
+</div>

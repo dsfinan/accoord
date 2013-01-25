@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Warehouse" items="${warehouses}" z="FrNfIqQin6QuWYsCIO5C6W0nQyg=">
+        <table:table data="${warehouses}" id="l_com_accoord_domain_Warehouse" path="/warehouses" z="Oju8lbxDVkURxCb6dSSgFPOnf24=">
+            <table:column id="c_com_accoord_domain_Warehouse_created" property="created" z="gSIUS76N0jLXjUEdq3yr/mjLSUI="/>
+            <table:column id="c_com_accoord_domain_Warehouse_open" property="open" z="wlWPXs/Gp3nnw5YWk5hkuGYD5As="/>
+            <table:column id="c_com_accoord_domain_Warehouse_address" property="address" z="ImnD8KnQaMZavcmoSZy6gf9NNws="/>
+            <table:column id="c_com_accoord_domain_Warehouse_city" property="city" z="ondJ0/7PXGN9x6X5kSutluFQspA="/>
+            <table:column id="c_com_accoord_domain_Warehouse_country" property="country" z="MFjySQLrB7Km2rVSRBXjVCqsuy4="/>
+            <table:column id="c_com_accoord_domain_Warehouse_description" property="description" z="T2XgV6whR8/qLPBnha6nuTHs7N0="/>
+        </table:table>
+    </page:list>
+</div>

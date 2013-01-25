@@ -1,0 +1,537 @@
+<div 	xmlns:c="http://java.sun.com/jsp/jstl/core"  
+		xmlns:spring="http://www.springframework.org/tags" 
+		xmlns:sec="http://www.springframework.org/security/tags" 
+		xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+		xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+		
+		
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+
+  <spring:url var="loading" value="/resources/images/ajax-loader.gif" />
+
+
+
+
+
+ 
+<script type="text/javascript">
+
+
+// set the inital map variables for full scope
+var map;
+var latlng = new google.maps.LatLng(0,0);
+var zoom = 1;
+var saveMarkers = [];
+//var eventContainer = $('ul#EventTree');
+var dashboard;
+var eventdata;
+
+var rootPath = "${rootPath}";
+
+var tl;
+var resizeTimerID = null;
+
+var conflict = 0;
+var earthquake = 0;
+var epidemic = 0;
+var flood = 0;
+var hurricane = 0;
+var tornado = 0;
+var tsunami = 0;
+var other = 0;
+
+var bandInfos = [
+                 Timeline.createBandInfo({
+                     width:          "70%", 
+                     intervalUnit:   Timeline.DateTime.MONTH, 
+                     intervalPixels: 75
+                 }),
+                 Timeline.createBandInfo({
+                     width:          "30%", 
+                     intervalUnit:   Timeline.DateTime.YEAR, 
+                     intervalPixels: 150
+                 })
+               ];
+bandInfos[1].syncWith = 0;
+bandInfos[1].highlight = true;
+
+
+$(document).ready(function(){
+	
+
+ 	
+	//Create a dashboard and data table        
+	dashboard = new google.visualization.Dashboard(document.getElementById('dashboard')); 
+	eventdata = new google.visualization.DataTable();	
+	orgdata = new google.visualization.DataTable();
+	//build map
+
+	
+    var myOptions = {
+    	      zoom: zoom,
+    	      center: latlng,
+    	      mapTypeId: google.maps.MapTypeId.TERRAIN
+    	    };
+    	    
+    	        map = new google.maps.Map(document.getElementById('map_canvas'),
+    	        myOptions);
+    	   
+    	              
+    	    	//REMOVE only for debuging
+    	    	$.getJSON(rootPath+"/ajax/returnUsers", function(users) {
+    	    		
+				//do nothing, just check firebug
+    	    	});
+    	    	$.getJSON(rootPath+"/ajax/returnOrgs", function(orgs) {
+    	    	//do nothing, just check firebug
+        	    });
+	    		$.getJSON(rootPath+"/ajax/returnUserRoles", function(uRoles) {
+	        	//do nothing, just check firebug
+	    	    });
+	    		$.getJSON(rootPath+"/ajax/returnRoles", function(roles) {
+	    		//do nothing, just check firebug
+	    		});
+    	        
+    	        
+    	//get EventJson
+    	$.getJSON(rootPath+"/ajax/returnEvents", function(events) {
+    	        if (events != null) {
+    	        	//send JSON to updateMap
+    	           	updateMap(events); 
+    	          // send JSON to updates
+    	          // updateUpdates(events);
+					drawSysDashboard(events);
+    	          
+    	          //setup EventTree
+    	          
+//create the timeline
+tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+
+$.each( events, function( iteration, item )
+{
+	$('div#EventTree').append(
+        $(document.createElement("div"))
+        .append(
+                $(document.createElement("input")).attr({
+                         id:    'topicFilter-' + item.eventtype,
+                        name:  item.eventtype,
+                        value: item.eventtype,
+                        type:  'checkbox',
+                        checked:true
+                })
+                .click( function( event )
+                {
+                        var cbox = $(this)[0];
+                        alert( cbox.value );
+                } )
+        )
+        .append(
+                $(document.createElement('span')).attr({
+                        'for':  'topicFilter' + '-' + item
+                })
+                .text( item.eventtype )
+        )
+
+
+        
+    )
+    
+
+    
+} );
+
+
+    	        } else {
+    				alert('No data');
+    	        }
+    	  });
+    	        
+         	  
+    	
+});
+
+
+
+
+
+function updateMap(json) {
+
+
+		//iterate over the json
+	$.each(json, function(key, event) { 
+		
+		//set up icons		
+		
+		switch (event.eventtype)
+		{
+		case "Conflict":
+		iconPath =rootPath+"/resources/images/icons/grn-blank.png";
+		conflict = conflict + 1;
+  		break;
+		case "Earthquake":
+		iconPath =rootPath+"/resources/images/icons/red-blank.png";
+		earthquake = earthquake + 1;
+	  	break;
+		case "Epidemic":
+		iconPath =rootPath+"/resources/images/icons/ylw-blank.png";
+		epidemic = epidemic + 1;
+	  	break;	  
+		case "Flood":
+		iconPath =rootPath+"/resources/images/icons/ltblu-blank.png";
+		flood = flood + 1;
+	  	break;	  
+		case "Hurricane":
+		iconPath =rootPath+"/resources/images/icons/blu-blank.png";
+		hurricane = hurricane + 1;
+	  	break;
+		case "Tornado":
+		iconPath =rootPath+"/resources/images/icons/grn-blank.png";
+		tornado = tornado + 1;
+	  	break;	  
+		case "Tsunami":
+		iconPath =rootPath+"/resources/images/icons/blu-blank.png";
+		tsunami = tsunami + 1;
+		break;	  
+		default:
+		iconPath =rootPath+"/resources/images/icons/wht-blank.png";
+		other = other + 1;
+		}
+		
+		
+		var icon = new google.maps.MarkerImage(iconPath,
+			new google.maps.Size(64, 64),
+			new google.maps.Point(0, 0),
+			new google.maps.Point(12, 25),
+			new google.maps.Size(25, 25)
+		//new google.maps.Point(16, 32),
+		//new google.maps.Size(32, 32)
+			);
+
+		//set up markers
+			  var latlng = new google.maps.LatLng(event.lat, event.lng);
+			  var marker = new google.maps.Marker({
+				  position: latlng, 
+				  map: map, 
+				  title:event.name,
+				  icon: icon});
+		
+		//setup eventlistener	  
+		google.maps.event.addListener(marker, 'click', function(){
+			window.location = rootPath+ '/events/' +event.id;
+			});
+  	  
+		//set custom properties
+		marker.myCategory = event.eventtype;                                 
+        marker.myDate = event.created;
+        marker.myOpen = event.open;
+    	//marker.myorgs = event.orgs;
+		
+		
+			  
+		//push marker into array
+		
+		saveMarkers.push(marker);	  	  
+			  
+	});
+	
+
+
+	
+}
+
+function hideMarkers() {
+	//iterate over the markers
+	$.each(saveMarkers, function(index, marker) { 
+		//  based on the alert, appears that I can access orgObject for each marker = alert(marker.myorgs);
+		if (marker.myCategory == "Earthquake"){
+			marker.setVisible(false);
+		}
+		
+	});
+}
+
+
+
+//dashboard
+
+function drawSysDashboard(events) {
+  
+//build a datatable for the piechart
+var eventpiedata = new google.visualization.DataTable();
+		eventpiedata.addColumn('string', 'Event Type');
+		eventpiedata.addColumn('number', 'Number');
+		eventpiedata.addRows([
+          ['Conflict',    conflict],
+          ['Earthquake',     earthquake],
+          ['Epidemic',  epidemic],
+          ['Flood', flood],
+          ['Hurricane', hurricane],
+          ['Tornado', tornado],
+          ['Tsunami', tsunami],
+          ['Other',    other]
+        ]);
+	
+
+// create the data table and add column headings before loop
+
+eventdata.addColumn('string','Name');
+eventdata.addColumn('string', 'Type of Event');
+eventdata.addColumn('date', 'Created');
+eventdata.addColumn('number', 'Assessments');
+eventdata.addColumn('number', 'Service Areas');
+
+
+
+//count length of events array and put into rows
+eventdata.addRows(events.length);
+
+
+//set the values in a loop
+$.each(events, function(key, event) {
+	//change json date to date object
+	date = new Date(event.created);
+	
+	eventdata.setCell(key, 0, event.name);
+	eventdata.setCell(key, 1, event.eventtype);
+	eventdata.setValue(key, 2, date);
+	eventdata.setValue(key, 3, event.assessmentareas.length);
+	eventdata.setValue(key, 4, event.serviceareas.length);
+
+	
+});  
+
+
+
+
+// Define a category picker control for the Gender column
+var categoryPicker = new google.visualization.ControlWrapper({
+  'controlType': 'CategoryFilter',
+  'containerId': 'CatSelect',
+  'options': {
+    'filterColumnLabel': 'Event Type', //this needs to be changed if you use the other data table
+    'ui': {
+    'labelStacking': 'horizonal',
+      'allowTyping': false,
+      'allowMultiple': true
+    }
+  }
+});
+
+//Define a pie chart
+
+        
+        //var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+        var piechart = new google.visualization.ChartWrapper({
+      	  'chartType': 'PieChart',
+      	  'containerId': 'piechart_div',
+      	  'options': {
+      	    'width': 450,
+      	    'height': 300,
+      	    'title' :"Events by Type"
+      	  }
+      	});
+
+// Define a bar chart
+var barChart = new google.visualization.ChartWrapper({
+	  'chartType': 'ColumnChart',
+	  'containerId': 'barChart',
+	  'options': {
+	    'width': 450,
+	    'height': 300,
+	    'title' :"Response Events",
+	    'vAxis': {title: 'Total Number', titleTextStyle: {color: 'red'}},
+	    'hAxis': {title: 'Event', titleTextStyle: {color: 'blue', fontName: 'arial', fontSize: 12}},
+	    'chartArea': {width:"40%",height:"50%"}
+	  },
+	  'view': {'columns': [0, 3, 4]}
+	});
+
+// Define a table
+var eventtable = new google.visualization.ChartWrapper({
+  'chartType': 'Table',
+  'containerId': 'eventDataTable',
+  'options': {
+    'width': '400px'
+
+  },
+  'view': {'columns': [0, 1, 2]}
+
+});
+
+
+
+  //bind and draw
+  //dashboard.bind(categoryPicker, [barChart, eventtable]);
+  dashboard.bind(categoryPicker, [piechart]);
+  dashboard.draw(eventpiedata);
+  
+
+  // When the slector is selected, togle the markers.
+  google.visualization.events.addListener(categoryPicker, 'statechange', function() {
+
+    
+	//hide the markers
+	$.each(saveMarkers, function(index, marker) { 
+
+		marker.setVisible(false);
+		
+	});    
+    
+
+    //selection array
+    selections = categoryPicker.getState().selectedValues;
+    
+	//if selction is empty, show all markers
+	if (selections == "")	{
+
+		$.each(saveMarkers, function(index, marker) { 
+
+			marker.setVisible(true);
+			
+		}); 
+	}    
+    
+    
+	//iterate over the selctions
+	$.each(selections, function(index, selection) { 
+	    	//iterate over the markers
+			$.each(saveMarkers, function(index, marker) { 
+				//  based on the alert, appears that I can access orgObject for each marker = alert(marker.myorgs);
+				if (marker.myCategory == selection){
+					marker.setVisible(true);
+				}
+				
+			});
+	});	    
+    
+    
+    
+  });  
+  
+  
+}
+
+
+
+//build an org data table
+function buildOrgTable(events) {
+	  
+	//call the orgs to get a count
+	$.getJSON(rootPath+"/ajax/returnOrgs", function(orgs) {
+    	    	
+		var numberOrgs = orgs.length;
+		
+		//set the values in a loop
+		$.each(events, function(key, event) {
+			
+			//for each event that matches the org, insert the assessments and service areas
+			
+			//change json date to date object
+			date = new Date(event.created);
+			
+			eventdata.setCell(key, 0, event.name);
+			eventdata.setCell(key, 1, event.eventtype);
+			eventdata.setValue(key, 2, date);
+			eventdata.setValue(key, 3, event.assessmentareas.length);
+			eventdata.setValue(key, 4, event.serviceareas.length);
+
+			
+		});  
+		
+		
+   	});
+	
+	
+	// create the data table and add column headings before loop
+
+	orgdata.addColumn('string','Name');
+	orgdata.addColumn('string', 'Type of Event');
+	orgdata.addColumn('date', 'Created');
+	orgdata.addColumn('number', 'Assessments');
+	orgdata.addColumn('number', 'Service Areas');
+
+
+	//count length of events array and put into rows
+	eventdata.addRows(events.length);
+
+
+
+
+}
+
+
+</script>
+  
+  
+  
+
+
+
+<div id="greeting" style="width:100%; padding:5px">  
+	<div id="breadcrumbs" style="padding:3px">
+	<a alt="Accoord" href="/" title="Accoord">Home</a>
+	</div>
+</div>  
+  
+<div id="timelinediv" style="width:100%; padding:5px">  
+	<div id="my-timeline" style="height: 100px; width:100%; border: 1px solid #aaa">
+ 	Loading.... <img align="left" src="${loading}" />
+ 	</div>
+</div> 
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+
+    
+    <tr>
+ 		<td valign="top" width="600px"> <!-- This is the map  and msg column -->
+
+
+    	<div id="map_canvas" style="width:590px; height:400px; margin-left: auto; margin-right: auto" />
+
+
+        </td>
+
+	
+	
+    
+ 		<td valign="top"> <!-- This is the info column -->
+ 
+
+
+
+
+
+ 
+ 			<p />
+    		
+			<div id="dashboard">
+			
+				<div id="CatSelect" style="padding: 5px">    
+					<img align="left" src="${loading}" />
+ 					Loading....
+				</div>
+				<div id="piechart_div" style="padding: 5px">..</div>
+				<div id="barChart" style="padding: 5px">..</div>
+				<div id="eventDataTable" style="padding: 25px">..</div>
+			</div>
+
+
+ 
+		</td>      
+    </tr>
+
+</tbody>
+
+</table>
+
+
+
+    
+
+</div>
+

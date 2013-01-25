@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Equipment" items="${equipments}" z="hRAQtBWiviWIxOh5nlbLuHN64V4=">
+        <table:table data="${equipments}" id="l_com_accoord_domain_Equipment" path="/equipments" z="KYH0vyrwKObtk0SJMhXPKjPUMnw=">
+            <table:column id="c_com_accoord_domain_Equipment_created" property="created" z="H2blOXpDJsOMGABhlaO7bknTgjo="/>
+            <table:column id="c_com_accoord_domain_Equipment_sector" property="sector" z="YHmIoHo7hp5txBqNWkZ8rG9cxnQ="/>
+            <table:column id="c_com_accoord_domain_Equipment_description" property="description" z="sUTBTf5VIa0zDJi/t6pzb4SLtgk="/>
+            
+            
+            
+        <table:column id="c_com_accoord_domain_Equipment_lat" property="lat" z="3GsGR7sOk2Oct/2GfVxKlHrkSU8="/>
+            <table:column id="c_com_accoord_domain_Equipment_lng" property="lng" z="ZQHItBtX3lBwrnKSKiitTOd0IPs="/>
+        
+        <table:column id="c_com_accoord_domain_Equipment_owner" property="owner" z="WY2KhFODu+32hu+qQiJI7kFb8GI="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_Comment" modelAttribute="comment" path="/comments" z="oBeHwTzwyV6XlaMp14C16I/8XB4=">
+        <field:input field="comment" id="c_com_accoord_domain_Comment_comment" required="true" z="nrmFer45z3QlW8dKVEq55/AlR1Y="/>
+        <field:datetime dateTimePattern="${comment_created_date_format}" field="created" id="c_com_accoord_domain_Comment_created" z="9nBv0WYiEZcyZDHVEz25c0gDJJk="/>
+        <field:select field="owner" id="c_com_accoord_domain_Comment_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="ziUZk2v+lYeodNRk1O1F2C0j7QQ="/>
+    </form:update>
+</div>

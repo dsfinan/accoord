@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8"/>
+	<jsp:output omit-xml-declaration="yes"/>
+
+<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_usr" z="hLlNEc8KUGheNMFUcRjBPtBjh9A=">
+            <menu:item id="i_usr_new" messageCode="global_menu_new" url="/usrs?form" z="RRBF24jxADCH8j3dPS7gwUq+37M="/>
+        <menu:item id="i_usr_list" messageCode="global_menu_list" url="/usrs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Ewn4K2q1OGDzya/cmDFiPUlnSfg="/>
+        </menu:category>
+    <menu:category id="c_seleniumtests" z="PPLMd2yNB6/LSbjIWogAacRPU+Q=">
+            <menu:item id="si_seleniumtests_test" messageCode="selenium_menu_test_suite" url="/resources/selenium/test-suite.xhtml" z="wwunW/IPDcunN97u41MvMJZQ2to="/>
+        </menu:category>
+    <menu:category id="c_userentity" z="wyFX/cINk6ZbqZOm9gpEfYWpOQ4=">
+            <menu:item id="i_userentity_new" messageCode="global_menu_new" url="/userentitys?form" z="j57tahUzwslctXSHcgN8YjhYT9Q="/>
+        <menu:item id="i_userentity_list" messageCode="global_menu_list" url="/userentitys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="i0r0xJgwP//kkUJPhKTQgTjfiI0="/>
+        </menu:category>
+    <menu:category id="c_organization" z="gO0504EkmjBoxBVpkyR0T5CoPI0=">
+            <menu:item id="i_organization_new" messageCode="global_menu_new" url="/organizations?form" z="TtxbM3bSoyu9GeQUEI3TO3cIhXE="/>
+        <menu:item id="i_organization_list" messageCode="global_menu_list" url="/organizations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="cG3kHEq9WyOwK5cgUh2qiSf2jZI="/>
+        </menu:category>
+    <menu:category id="c_roleentity" z="/6GU5zwScIpwxVBrG0xpgVImYkA=">
+            <menu:item id="i_roleentity_new" messageCode="global_menu_new" url="/roleentitys?form" z="rKMZ3U6BzUFE1yA6sMsyPoQ14HA="/>
+        <menu:item id="i_roleentity_list" messageCode="global_menu_list" url="/roleentitys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="+meRkHGKZIa9vIinKfSLjczdzxI="/>
+        </menu:category>
+    <menu:category id="c_userrole" z="C4C1ZBdes4PUIjEM3Ajwwhn1EwA=">
+            <menu:item id="i_userrole_new" messageCode="global_menu_new" url="/userroles?form" z="qYpuuJuPupoYjD8LM0ISnxylj4o="/>
+        <menu:item id="i_userrole_list" messageCode="global_menu_list" url="/userroles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fTjcT4INZTypLgu+ZHmwzE55ORs="/>
+        </menu:category>
+    <menu:category id="c_assessmentarea" z="/gA/+T3Ql5E/ywaPKaIHJrM/+Ag=">
+            <menu:item id="i_assessmentarea_new" messageCode="global_menu_new" url="/assessmentareas?form" z="0OGyo6GJ9EFwktyOB8v3o5e32EM="/>
+        <menu:item id="i_assessmentarea_list" messageCode="global_menu_list" url="/assessmentareas?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="n6xfnZnl7uwuZ4iZVgC8cdouas8="/>
+        </menu:category>
+    <menu:category id="c_event" z="AURyeKTmOObIARXqfI9DXukJNIE=">
+            <menu:item id="i_event_new" messageCode="global_menu_new" url="/events?form" z="BObcRn250Q23VbXG8kWIXR49efE="/>
+        <menu:item id="i_event_list" messageCode="global_menu_list" url="/events?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="HhukY239I3S1Kj1me3pbW4MxNAk="/>
+        </menu:category>
+    <menu:category id="c_view" z="HjmI4Chx/kBYfS/6HjBLbCA+XpU=">
+            <menu:item id="i_view__profileprofile_id" messageCode="global_generic" url="/profile/profile" z="lecrX+jvPjlNiKVB/+ldm0mfJVQ="/>
+        </menu:category>
+    <menu:category id="c_junk" z="3ZimFhgywPh/LNCN9As1O3vJx90=">
+            <menu:item id="i_junk_new" messageCode="global_menu_new" url="/junks?form" z="CJuJxbW97ibLWPJHS9Dm3U7pxJQ="/>
+        <menu:item id="i_junk_list" messageCode="global_menu_list" url="/junks?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="/DCd53l1S9tRrxmjK5R9IsMi+Mc="/>
+        </menu:category>
+    </menu:menu>
+</div>

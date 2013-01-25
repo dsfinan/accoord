@@ -1,0 +1,309 @@
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-12 13:29:41
+project --topLevelPackage com.accoord --projectName accoord --java 6
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-12 13:29:45
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-12 13:32:00
+persistence setup --provider HIBERNATE --database MYSQL
+database properties list
+perform eclipse
+help
+// [failed] entity --class ~.domain.User
+// [failed] field string email --sizeMax 100
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-12 14:51:18
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-12 14:58:02
+perform eclipse
+entity --class ~.domain.Usr
+field string email 
+field string firstname
+field string lastname
+field string username
+test integration
+controller scaffold ~.web.MainController
+selenium test --controller ~.web.MainController
+perform test
+perform test
+perform eclipse
+exit
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-12 15:08:19
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-12 15:36:10
+security setup
+perform package
+perform eclipse
+perform eclipse
+perform eclipse
+perform eclipse
+perform eclipse
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-13 12:47:31
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-13 13:52:37
+// [failed] perform eclipse
+perform eclipse
+perform eclipse
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-14 18:44:56
+ entity --class ~.domain.Organization
+field string --fieldName name --notNull 
+// [failed]  entity --class ~.domain.User
+// [failed] field string --fieldName username --notNull 
+// [failed] field string --fieldName password --notNull 
+// [failed] field string --fieldName email --notNull 
+exit
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-14 18:56:14
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-14 18:56:38
+perform eclipse
+// [failed]  entity --class ~.domain.User
+ entity --class ~.domain.UserEntity
+field string --fieldName username --notNull 
+field string --fieldName password --notNull 
+field string --fieldName email --notNull 
+perform eclipse
+// [failed]  entity --class ~.domain.Organization
+// [failed]  entity --class ~.domain.UserEntity
+// [failed]  entity --class ~.domain.Role
+ entity --class ~.domain.RoleEntity
+field string --fieldName rolename --notNull 
+ entity --class ~.domain.UserRole
+perform eclipse
+ entity --class ~.domain.UserEntity
+// [failed] field string --fieldName username --notNull 
+// [failed] field string --fieldName password --notNull 
+exit
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-14 19:11:49
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-14 19:12:19
+perform eclipse
+ entity --class ~.domain.Organization
+field string --fieldName name --notNull 
+// [failed]  entity --class ~.domain.UserEntity
+ entity --class ~.domain.UserEntity
+field string --fieldName username --notNull 
+field string --fieldName password --notNull 
+field string --fieldName email --notNull 
+field boolean --fieldName verified --notNull 
+field reference --fieldName organization --type ~.domain.Organization
+// [failed]  entity --class ~.domain.Organization
+field reference --fieldName admin --type ~.domain.UserEntity
+// [failed]  entity --class ~.domain.Role
+ entity --class ~.domain.RoleEntity
+field string --fieldName name --notNull 
+ entity --class ~.domain.UserRole
+// [failed] field reference --fieldName user --type ~.domain.UserEntity
+field reference --fieldName userentity --type ~.domain.UserEntity
+field reference --fieldName roleentity --type ~.domain.RoleEntity
+// [failed]  entity --class ~.domain.UserEntity
+field string --fieldName resetkey --notNull 
+perform eclipse
+controller scaffold ~.web.MainController
+perform test
+test integration
+perform package
+controller scaffold ~.web.MainController
+ entity --class ~.domain.Usr
+// [failed]  entity --class ~.domain.UserRole
+// [failed] field string --fieldName role  
+field string --fieldName rolename  
+test integration
+test integration
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-18 01:18:10
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-18 16:42:40
+// [failed] perform test
+perform test
+perform test
+perform test
+// [failed] perform test
+perform test
+perform test
+perform test
+perform test
+perform test
+perform eclipse
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-18 23:19:58
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-18 23:27:41
+// [failed]  entity --class ~.domain.RoleEntity
+test integration
+test integration
+test integration
+test integration
+perform test
+perform test
+perform eclipse
+perform test
+test integration
+test integration
+// [failed]  entity --class ~.domain.UserRole
+test integration
+test integration
+perform test
+perform test
+perform eclipse
+perform test
+perform test
+ controller all --package ~.controller
+help
+hint
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-19 22:38:56
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-19 22:39:13
+perform package
+perform package
+// [failed] entity --class ~.domain.UserEntity
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log closed at 2011-05-20 16:45:59
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-20 16:46:13
+perform package
+perform package
+hint
+perform package
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-24 15:33:47
+hint
+// Spring Roo 1.1.2.RELEASE [rev fbc33bb] log opened at 2011-05-26 11:47:00
+// [failed]  entity --class ~.domain.Organization
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-05-26 10:41:27
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-05-26 10:53:42
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-05-26 15:04:41
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-05-26 15:15:24
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-05-26 16:15:20
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-05-27 17:25:45
+entity --class ~.domain.Event --testAutomatically
+entity --class ~.domain.AssessmentArea --testAutomatically
+hint
+hint
+hint entities
+// [failed] controller scaffold --class ~.web.AssessmentAreaController
+controller scaffold --class com.accoord.web.AssessmentAreaController
+// [failed] entity --class ~.domain.Event
+controller scaffold --class com.accoord.web.EventController
+web mvc install view --path /profile --viewName profile --title Profile
+hint
+hint
+// [failed] entity --class ~.domain.TestObject --testAutomatically
+entity --class ~.domain.Junk --testAutomatically
+controller scaffold --class com.accoord.web.JunkController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-05-29 16:58:12
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-05-29 20:08:18
+focus --class ~.domain.Event
+field reference --fieldName createdBy --type ~.domain.UserEntity
+hint
+hint
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-01 00:14:11
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-02 07:44:20
+entity --class ~.domain.ServiceArea --testAutomatically 
+entity --class ~.domain.SecurityEvent --testAutomatically
+entity --class ~.domain.Service --testAutomatically 
+entity --class ~.domain.Equipment --testAutomatically 
+entity --class ~.domain.Office --testAutomatically 
+// [failed] entity --class ~.domain.Warehouse --testAutomatically 
+entity --class ~.domain.Warehouse --testAutomatically
+entity --class ~.domain.ShelterProgram --testAutomatically
+entity --class ~.domain.Distribution --testAutomatically
+entity --class ~.domain.Training --testAutomatically
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-03 07:45:31
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-03 10:48:33
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-04 12:43:25
+// [failed] entity --class ~.domain.ServiceArea --testAutomatically
+entity --class ~.domain.ServiceArea 
+hint
+controller scaffold --class ~.domain.ServiceArea
+controller scaffold --class ~.web.ServiceAreaController
+entity --class ~.domain.SecurityIncident
+controller scaffold --class ~.web.SecurityIncidentController
+entity --class ~.domain.Office
+hint
+controller scaffold --class ~.web.OfficeController
+entity --class ~.domain.Warehouse
+entity --class ~.domain.StockList
+entity --class ~.domain.StockItem
+hint
+controller scaffold --class ~.web.StockItemController
+focus --class ~.domain.Warehouse
+controller scaffold --class ~.web.WarehouseController
+entity --class ~.domain.Equipment
+controller scaffold --class ~.web.EquipmentController
+entity --class ~.domain.ShelterProject
+entity --class ~.domain.ShelterUpdate
+focus --class ~.domain.ShelterUpdate
+controller scaffold --class ~.web.ShelterUpdateController
+focus --class ~.domain.ShelterProject
+controller scaffold --class ~.web.ShelterProjectController
+entity --class ~.domain.Training
+controller scaffold --class ~.web.TrainingController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-05 17:13:33
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-16 16:29:13
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-16 16:38:02
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-16 16:38:17
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-16 16:38:22
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 08:34:40
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 12:35:44
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 14:45:55
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 14:48:03
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 15:16:22
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 15:19:05
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 15:29:41
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 15:35:48
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 22:40:36
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 22:44:00
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 22:46:30
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 22:50:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 22:51:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 22:55:22
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 23:14:02
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 23:17:27
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 23:33:18
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 23:36:38
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 23:40:03
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 23:44:00
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 23:48:38
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 23:50:39
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-18 23:53:56
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-18 23:57:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 00:12:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 00:16:44
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 00:23:41
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 00:25:13
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 00:34:08
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 00:46:01
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 00:56:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 01:13:30
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 07:13:06
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 07:18:20
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-19 08:02:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-19 08:03:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-20 00:11:53
+entity --class ~.domain.Message
+entity --class ~.domain.Comment
+controller scaffold --class ~.domain.Comment
+controller scaffold --class ~.web.CommentController
+focus --class ~.domain.Message
+// [failed] controller scaffold --class ~.web.MessageController
+controller scaffold --class ~.web.MessageController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-20 00:48:28
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-20 01:10:11
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-20 01:16:55
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-20 15:08:26
+// [failed] entity --class ~.domain.RapidAssessment
+entity --class ~.domain.RapidAssessment
+controller scaffold --class ~.web.RapidAssessmentController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-20 17:04:29
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-21 09:05:22
+entity --class ~.domain.ConstructionProject
+entity --class ~.domain.ConstructionUpdate
+entity --class ~.domain.Distribution
+entity --class ~.domain.UserProfile
+entity --class ~.domain.OrgProfile
+focus --class ~.domain.CounstructionProject
+focus --class ~.domain.ConstructionProject
+controller scaffold --class ~.web.ConstructionProjectController
+focus --class ~.domain.ConstructionUpdate
+controller scaffold --class ~.web.ConstructionUpdateController
+focus --class ~.domain.UserProfile
+controller scaffold --class ~.web.UserProfileController
+focus --class ~.domain.OrgProfile
+controller scaffold --class ~.web.OrgProfileController
+focus --class ~.domain.Distribution
+// [failed] controller scaffold --class ~.web.DistributionController
+controller scaffold --class ~.web.DistributionController
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-21 13:30:20
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-21 15:55:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-21 16:14:57
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-21 23:10:43
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-21 23:18:31
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-21 23:37:24
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-21 23:40:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-06-21 23:53:35
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-06-22 00:02:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-07-21 15:48:20
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-07-21 16:08:18

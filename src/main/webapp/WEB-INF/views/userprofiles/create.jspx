@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_accoord_domain_UserProfile" modelAttribute="userProfile" path="/userprofiles" render="${empty dependencies}" z="OJicraqZHNl7LGxJwRnGThJmobY=">
+        
+        <field:textarea field="profilepicture" id="c_com_accoord_domain_UserProfile_profilepicture" z="wMTUYJNBvoYdkgK3AKAuVrTjdlo="/>
+        <field:textarea field="bio" id="c_com_accoord_domain_UserProfile_bio" z="j8924mtY9kp2IvUNXgIOCsiCqbo="/>
+        <field:input field="skype" id="c_com_accoord_domain_UserProfile_skype" z="X5u0c4XkaF1kUOlONNczcyv2Hqs="/>
+        <field:input field="twitter" id="c_com_accoord_domain_UserProfile_twitter" z="PsB+JNDeZTiXcvBh4OKTeS4K+go="/>
+        <field:input field="linkedin" id="c_com_accoord_domain_UserProfile_linkedin" z="Tv72POPT8CX5dSvoudyCLnAyNGM="/>
+        <field:simple field="messages" id="c_com_accoord_domain_UserProfile_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="NxD71hpzbOZSx7NrSizqsMp7EBo="/>
+  </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_accoord_domain_UserProfile" render="${not empty dependencies}" z="y2wIVxFjnRC0xkLDs1ef5GKgw8o="/>
+</div>

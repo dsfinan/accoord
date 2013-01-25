@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="assessmentareas/list">
+        <put-attribute name="body" value="/WEB-INF/views/assessmentareas/list.jspx"/>
+    </definition>
+<definition extends="default" name="assessmentareas/show">
+        <put-attribute name="body" value="/WEB-INF/views/assessmentareas/show.jspx"/>
+    </definition>
+<definition extends="default" name="assessmentareas/create">
+        <put-attribute name="body" value="/WEB-INF/views/assessmentareas/create.jspx"/>
+    </definition>
+<definition extends="default" name="assessmentareas/update">
+        <put-attribute name="body" value="/WEB-INF/views/assessmentareas/update.jspx"/>
+    </definition>
+</tiles-definitions>

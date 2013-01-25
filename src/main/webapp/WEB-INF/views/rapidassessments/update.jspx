@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_RapidAssessment" modelAttribute="rapidAssessment" path="/rapidassessments" z="MVGCsPbPBSJg2Q/hwwJAwgeSY5I=">
+        <field:datetime dateTimePattern="${rapidAssessment_created_date_format}" field="created" id="c_com_accoord_domain_RapidAssessment_created" z="YqSDoK/hoMLE1Ij1I0Q+lUb3sVw="/>
+        <field:select field="area" id="c_com_accoord_domain_RapidAssessment_area" itemValue="id" items="${assessmentareas}" path="/assessmentareas" required="true" z="r9IWObcc1nBxMD7T99zRKHm2CZM="/>
+        <field:select field="owner" id="c_com_accoord_domain_RapidAssessment_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="s6oKcnQziPiVQUABrQ5+I2VxGiY="/>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    <field:input field="gen_est_per_aff" id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff" validationMessageCode="field_invalid_number" z="uxCDCyygMCHAbsXtBx1SQRfEKoQ="/>
+        <field:input field="gen_est_per_aff_male" id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff_male" validationMessageCode="field_invalid_number" z="du9/EzDxjrwbyC48gtxTUV1/e84="/>
+        <field:input field="gen_est_per_aff_female" id="c_com_accoord_domain_RapidAssessment_gen_est_per_aff_female" validationMessageCode="field_invalid_number" z="gu1nQ8JkFR2tyyI1i8JZ14JwDG8="/>
+        <field:input field="gen_est_num_dead" id="c_com_accoord_domain_RapidAssessment_gen_est_num_dead" validationMessageCode="field_invalid_number" z="e5jH5qaJgLEqOxn5U9o0r/IO/4M="/>
+        <field:input field="gen_est_num_injured" id="c_com_accoord_domain_RapidAssessment_gen_est_num_injured" validationMessageCode="field_invalid_number" z="n5MqWBXI5EGSNCg/OgYRqDBfhNY="/>
+        <field:input field="gen_est_num_missing" id="c_com_accoord_domain_RapidAssessment_gen_est_num_missing" validationMessageCode="field_invalid_number" z="wLLFsXxSrpEDbrVSLaiiORXALVo="/>
+        <field:input field="gen_likely_movements" id="c_com_accoord_domain_RapidAssessment_gen_likely_movements" z="LF1mNImZRiDIH9eH9ny+vsQjowY="/>
+        <field:input field="gen_keypeople_contact" id="c_com_accoord_domain_RapidAssessment_gen_keypeople_contact" z="W49Q0xT/AUB6gkpvvSLp2PECtLk="/>
+        <field:checkbox field="gen_being_registered" id="c_com_accoord_domain_RapidAssessment_gen_being_registered" z="bmXo1qfTR3gQH269eUJof8so2zk="/>
+        <field:input field="she_est_num_withshelters" id="c_com_accoord_domain_RapidAssessment_she_est_num_withshelters" validationMessageCode="field_invalid_number" z="FIYvnL8yIvmk3LFrZL2n8oeLG2o="/>
+        <field:select field="she_protection_elem" id="c_com_accoord_domain_RapidAssessment_she_protection_elem" items="${shelterconditionses}" path="shelterconditionses" z="QWiU+aISFTp0mS7ylZeUR41Kki8="/>
+        <field:select field="she_privacy" id="c_com_accoord_domain_RapidAssessment_she_privacy" items="${shelterconditionses}" path="shelterconditionses" z="URVuOxkXpXQMc4x4oVoQuYpTNuM="/>
+        <field:select field="she_security" id="c_com_accoord_domain_RapidAssessment_she_security" items="${shelterconditionses}" path="shelterconditionses" z="HeY1EeW+Yv8zRT24A9pl18ka1wE="/>
+        <field:select field="she_fire" id="c_com_accoord_domain_RapidAssessment_she_fire" items="${shelterconditionses}" path="shelterconditionses" z="YjZLPL0LgSFWZPObM38OmZQwAsY="/>
+        <field:input field="she_est_per_beds" id="c_com_accoord_domain_RapidAssessment_she_est_per_beds" validationMessageCode="field_invalid_number" z="vf3YlDpRhkXX0j3qxY48UYrbbAU="/>
+        <field:input field="she_est_per_cooking" id="c_com_accoord_domain_RapidAssessment_she_est_per_cooking" validationMessageCode="field_invalid_number" z="+SMUVQdAJ+9pDmXAak/KLxHCfcs="/>
+        <field:input field="she_est_per_plastic" id="c_com_accoord_domain_RapidAssessment_she_est_per_plastic" validationMessageCode="field_invalid_number" z="HPSthyinrpyAGAh8Cwgh+mQsT3I="/>
+        <field:input field="wat_used_perday_l_drinking" id="c_com_accoord_domain_RapidAssessment_wat_used_perday_l_drinking" validationMessageCode="field_invalid_number" z="lHByRaWMHRM5wm1d7Jz1eF1fZdw="/>
+        <field:input field="wat_used_perday_l_cooking" id="c_com_accoord_domain_RapidAssessment_wat_used_perday_l_cooking" validationMessageCode="field_invalid_number" z="8fz3ruQJFJbtuidPyELdexZSFyg="/>
+        <field:input field="wat_used_perday_l_bathe" id="c_com_accoord_domain_RapidAssessment_wat_used_perday_l_bathe" validationMessageCode="field_invalid_number" z="DobixV2EN/oEeWUxp4+C9qm3vCM="/>
+        <field:input field="wat_est_min_collect" id="c_com_accoord_domain_RapidAssessment_wat_est_min_collect" validationMessageCode="field_invalid_number" z="3hI5y2s8fUabqFkSZxI0JcW9U/0="/>
+        <field:checkbox field="wat_pipe_net_present" id="c_com_accoord_domain_RapidAssessment_wat_pipe_net_present" z="ZQICiPXqnnQtm3U8f4GtWxCbHeA="/>
+        <field:checkbox field="wat_surface_present" id="c_com_accoord_domain_RapidAssessment_wat_surface_present" z="Ti+OZhBHLdPO/eEDNzGZ8LForJQ="/>
+        <field:checkbox field="wat_vendors_present" id="c_com_accoord_domain_RapidAssessment_wat_vendors_present" z="AR7RCQcqtpKX2+IDX1gSJxGEo2U="/>
+        <field:input field="wat_est_def_funclat" id="c_com_accoord_domain_RapidAssessment_wat_est_def_funclat" validationMessageCode="field_invalid_number" z="/KvU1Q0oBKM1kJpWi7BPfndbErE="/>
+        <field:input field="wat_est_avgper_funclat" id="c_com_accoord_domain_RapidAssessment_wat_est_avgper_funclat" validationMessageCode="field_invalid_number" z="B8KZqsiAjR1fmNySBj8TsVtCVuY="/>
+        <field:input field="wat_est_def_open" id="c_com_accoord_domain_RapidAssessment_wat_est_def_open" validationMessageCode="field_invalid_number" z="kGVcTwL7sYGtsOUPCiSTGboOlV4="/>
+        <field:input field="wat_est_def_managed" id="c_com_accoord_domain_RapidAssessment_wat_est_def_managed" validationMessageCode="field_invalid_number" z="ksCCfKUQepbHsbxWtwA+yDMSjCY="/>
+        <field:input field="wat_est_def_publat" id="c_com_accoord_domain_RapidAssessment_wat_est_def_publat" validationMessageCode="field_invalid_number" z="bfPu/GedE5qVIxABQS2ZWOpZuII="/>
+        <field:input field="wat_est_def_famlat" id="c_com_accoord_domain_RapidAssessment_wat_est_def_famlat" validationMessageCode="field_invalid_number" z="sZ0uGiyxB/wabUw4+CdYppci5m8="/>
+        <field:checkbox field="wat_def_latforwomen" id="c_com_accoord_domain_RapidAssessment_wat_def_latforwomen" z="59f0LN6XwQbj7gPmGFx26QvJToA="/>
+        <field:input field="wat_hp_num_wcontainers" id="c_com_accoord_domain_RapidAssessment_wat_hp_num_wcontainers" validationMessageCode="field_invalid_number" z="U82AUKl8js+C0dQefST+Af1MCv0="/>
+        <field:checkbox field="wat_hp_handwashstation" id="c_com_accoord_domain_RapidAssessment_wat_hp_handwashstation" z="obAYdxpNmHME4dR+w2UFRCWU9ok="/>
+    </form:update>
+</div>

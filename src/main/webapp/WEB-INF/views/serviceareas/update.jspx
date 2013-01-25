@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_accoord_domain_ServiceArea" modelAttribute="serviceArea" path="/serviceareas" z="m351PF44is/d8q7w4MAV72mB7Mo=">
+        <field:input field="name" id="c_com_accoord_domain_ServiceArea_name" required="true" z="FFvJIR8cQQHxmb+C3O/X22ik0UM="/>
+        <field:input field="description" id="c_com_accoord_domain_ServiceArea_description" z="XFaqoOn0ghk7qoSaeK2zUwmZva8="/>
+        <field:datetime dateTimePattern="${serviceArea_created_date_format}" field="created" id="c_com_accoord_domain_ServiceArea_created" z="glwZ+fZZkWeuvsqQuItYZ7VJjTI="/>
+        <field:input field="polygon" id="c_com_accoord_domain_ServiceArea_polygon" required="true" z="ze5WHGMGivisclb2YAfP9r1OgHE="/>
+        
+        
+        
+        
+        
+        
+    <field:select field="event" id="c_com_accoord_domain_ServiceArea_event" itemValue="id" items="${events}" path="/events" required="true" z="PL92zEIIm8n+WOSQ0ZXk11I+/SY="/>
+    <field:simple field="equipment" id="c_com_accoord_domain_ServiceArea_equipment" messageCode="entity_reference_not_managed" messageCodeAttribute="Equipment" z="AVLo9epuU2nsSAS/ljK5xq8T8Rw="/>
+    
+    <field:simple field="trainings" id="c_com_accoord_domain_ServiceArea_trainings" messageCode="entity_reference_not_managed" messageCodeAttribute="Training" z="K7h0pN4Fld7HgO9CBu+IUHUgEb4="/>
+    <field:select field="owner" id="c_com_accoord_domain_ServiceArea_owner" itemValue="id" items="${userentitys}" path="/userentitys" required="true" z="dWsNrvEU9/Ecrk4Y5zFAWj5MPM8="/>
+    <field:input field="lastlat" id="c_com_accoord_domain_ServiceArea_lastlat" validationMessageCode="field_invalid_number" z="QR326yVKj7AhNk1T/qOAOJ/XEQk="/>
+        <field:input field="lastlng" id="c_com_accoord_domain_ServiceArea_lastlng" validationMessageCode="field_invalid_number" z="m1bOFbTBnt/gMLn8p6uyPvk9I2k="/>
+        <field:input field="lastzoomlevel" id="c_com_accoord_domain_ServiceArea_lastzoomlevel" validationMessageCode="field_invalid_number" z="0jD6S+YAV1GXFltFzsB+IdVBV8M="/>
+        <field:simple field="shelterprojects" id="c_com_accoord_domain_ServiceArea_shelterprojects" messageCode="entity_reference_not_managed" messageCodeAttribute="Shelter Project" z="yrNNTKpB5YR6uIGaDWvhx/j1PlY="/>
+    <field:simple field="constructionprojects" id="c_com_accoord_domain_ServiceArea_constructionprojects" messageCode="entity_reference_not_managed" messageCodeAttribute="Construction Project" z="vl5+7CVkM+xZqUVWloICIjhJ5fQ="/>
+    <field:simple field="distributions" id="c_com_accoord_domain_ServiceArea_distributions" messageCode="entity_reference_not_managed" messageCodeAttribute="Distribution" z="W3ZOmT7bMvm7BQxS6yATw0WAAGM="/>
+    <field:simple field="messages" id="c_com_accoord_domain_ServiceArea_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="KFqmOr9YNtG04pah43yfbXl78eM="/>
+    </form:update>
+</div>

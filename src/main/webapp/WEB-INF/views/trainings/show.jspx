@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_Training" object="${training}" path="/trainings" z="u6AiJ2BuMVTLFDlbKN2+zSXQkwU=">
+        
+        
+        <field:display field="sector" id="s_com_accoord_domain_Training_sector" object="${training}" z="wiOVLsJoQ+cchO9Smn35P6AaPT8="/>
+        <field:display field="description" id="s_com_accoord_domain_Training_description" object="${training}" z="Afpv2BqY899u9wzTchXhmmYGCnE="/>
+        <field:display field="area" id="s_com_accoord_domain_Training_area" object="${training}" z="WE8s/wL136klFkx0LacRztfKBS8="/>
+    
+    <field:display date="true" dateTimePattern="${training_date_performed_date_format}" field="date_performed" id="s_com_accoord_domain_Training_date_performed" object="${training}" z="PCbhFUt5AypNXKB/DcCo9VBZp0M="/>
+        <field:display field="training_type" id="s_com_accoord_domain_Training_training_type" object="${training}" z="3GJMzXhEk1BFMm+d1pSgt8FdTX4="/>
+        <field:display field="number_attended" id="s_com_accoord_domain_Training_number_attended" object="${training}" z="dxe0lsTv6kNuEpH5H7YlQRJOtRM="/>
+    <field:display field="owner" id="s_com_accoord_domain_Training_owner" object="${training}" z="Ps1eerRBDxoj4HfcLPaRMqXFwKU="/>
+    </page:show>
+</div>

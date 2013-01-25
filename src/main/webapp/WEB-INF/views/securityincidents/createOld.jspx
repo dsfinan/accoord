@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_accoord_domain_SecurityIncident" modelAttribute="securityIncident" path="/securityincidents" render="${empty dependencies}" z="YkHvEDoApFKlufzK4PJukSTiE6k=">
+        <field:datetime dateTimePattern="${securityIncident_incidentdate_date_format}" field="incidentDate" id="c_com_accoord_domain_SecurityIncident_incidentDate" required="true" z="pcVyuH0djjBIOWB+/0KB+S17O8c="/>
+        <field:input field="subject" id="c_com_accoord_domain_SecurityIncident_subject" z="Ez1kvTcuEQo8A6Lov/XpcFPLEv0="/>
+        <field:select field="type" id="c_com_accoord_domain_SecurityIncident_type" items="${securityincidenttypes}" path="securityincidenttypes" required="true" z="auGWA5Oa1q9mA4FIFLo/6ZPzTNc="/>
+        <field:input field="description" id="c_com_accoord_domain_SecurityIncident_description" z="eY3nNUSowuP6X+t0Q6b31Ib2qH0="/>
+        <field:input field="eventLat" id="c_com_accoord_domain_SecurityIncident_eventLat" validationMessageCode="field_invalid_number" z="PZusoDosCWowSLdN+PlM7spTPxw="/>
+        <field:input field="eventLng" id="c_com_accoord_domain_SecurityIncident_eventLng" validationMessageCode="field_invalid_number" z="RKJWag8Lousihupbc7dvncpLgI0="/>
+        <field:input field="createdBy" id="c_com_accoord_domain_SecurityIncident_createdBy" required="true" z="OzsPpEKJW1OUVqKWZO5s/elsgQQ="/>
+        <field:select field="event" id="c_com_accoord_domain_SecurityIncident_event" itemValue="id" items="${events}" path="/events" required="true" z="44UwXb1nICfUR8MhwYpE06X4lZU="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_accoord_domain_SecurityIncident" render="${not empty dependencies}" z="aso9Psi3FREq3kGVsqPrEZKOXOQ="/>
+</div>

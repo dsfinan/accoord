@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Training" items="${trainings}" z="f1oPtnQo5KtMJjHeX4+SZYCtRUE=">
+        <table:table data="${trainings}" id="l_com_accoord_domain_Training" path="/trainings" z="dNbt6J8KsvJqIiJQNe0l8aGhw0o=">
+            
+            
+            <table:column id="c_com_accoord_domain_Training_sector" property="sector" z="9gr7cSS+cEnu0D2CbQzdWvabLjU="/>
+            <table:column id="c_com_accoord_domain_Training_description" property="description" z="weIihKT7UMwwu0+RgOvw+OWZYZQ="/>
+            
+        
+        <table:column id="c_com_accoord_domain_Training_date_performed" property="date_performed" z="G7yZe1hBmWU6pnt7QIpSMNtHoUM="/>
+            <table:column id="c_com_accoord_domain_Training_training_type" property="training_type" z="IHg7MvJzjtRf3XYM2PiZH4SJv+c="/>
+            <table:column id="c_com_accoord_domain_Training_number_attended" property="number_attended" z="YgL8mXTP4M9498GWAqjWbIZaXNA="/>
+        <table:column id="c_com_accoord_domain_Training_owner" property="owner" z="xSjjvcx5bsSse1jeklF3XCTiL2o="/>
+        </table:table>
+    </page:list>
+</div>

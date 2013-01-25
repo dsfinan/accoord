@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_ShelterUpdate" items="${shelterupdates}" z="IEVnpx+M/yTgnqjQfQVBmvsRfKs=">
+        <table:table data="${shelterupdates}" id="l_com_accoord_domain_ShelterUpdate" path="/shelterupdates" z="FZ7C87V1PTFF3/NBkosMOckwOEk=">
+            <table:column id="c_com_accoord_domain_ShelterUpdate_updated" property="updated" z="5TpzoGZr6ptH9+UEiGXOLtW3f00="/>
+            
+            <table:column id="c_com_accoord_domain_ShelterUpdate_project" property="project" z="L0Nh4VXQFp7Y40HFdNh2SeHrPmI="/>
+        <table:column id="c_com_accoord_domain_ShelterUpdate_actualunitsbuilt" property="actualunitsbuilt" z="2HXN3UQLQ2IfJwXF9T4rFHBT/qs="/>
+        </table:table>
+    </page:list>
+</div>

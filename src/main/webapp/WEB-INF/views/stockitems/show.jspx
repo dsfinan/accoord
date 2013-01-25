@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_StockItem" object="${stockitem}" path="/stockitems" z="3CrB+/NPJqdDmH/L9V1Y8lswWJI=">
+        <field:display date="true" dateTimePattern="${stockItem_created_date_format}" field="created" id="s_com_accoord_domain_StockItem_created" object="${stockitem}" z="cyErbkK7SXReuPdomXu95UKHyjA="/>
+        <field:display field="item" id="s_com_accoord_domain_StockItem_item" object="${stockitem}" z="KqZcMe5tukqeJITmmYoxGTaPtaY="/>
+        
+        
+        <field:display field="notes" id="s_com_accoord_domain_StockItem_notes" object="${stockitem}" z="afWCqvp6lg8d/93qemqCxXvJJKM="/>
+        <field:display field="sector" id="s_com_accoord_domain_StockItem_sector" object="${stockitem}" z="VV6XREnkh3rhkMDeRZxNNxoyS98="/>
+        <field:display field="kilos" id="s_com_accoord_domain_StockItem_kilos" object="${stockitem}" z="4OkMurZA8Mq/t9aYp/kvTzPI6eo="/>
+        
+        <field:display field="warehouse" id="s_com_accoord_domain_StockItem_warehouse" object="${stockitem}" z="p32n54C+s5UmOwo17ajfPCjCKDI="/>
+    <field:display field="unittype" id="s_com_accoord_domain_StockItem_unittype" object="${stockitem}" z="rnT9Mk0/DdlTQs2r+xFBVVMiYg0="/>
+        <field:display field="numberofunits" id="s_com_accoord_domain_StockItem_numberofunits" object="${stockitem}" z="thaJmVG5S+D25/PR01vFr7m59no="/>
+        <field:display field="cubicmeters" id="s_com_accoord_domain_StockItem_cubicmeters" object="${stockitem}" z="2v3d3A72ayXYeQMPPh+PcJJCCCo="/>
+    </page:show>
+</div>

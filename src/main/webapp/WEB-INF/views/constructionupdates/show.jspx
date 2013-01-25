@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_ConstructionUpdate" object="${constructionupdate}" path="/constructionupdates" z="nxO65h/M9tiCpiLmpxAGO8pJrtE=">
+        <field:display date="true" dateTimePattern="${constructionUpdate_updated_date_format}" field="updated" id="s_com_accoord_domain_ConstructionUpdate_updated" object="${constructionupdate}" z="aFY+RQeiANqb9ePYmdt7VZOB6ks="/>
+        <field:display field="owner" id="s_com_accoord_domain_ConstructionUpdate_owner" object="${constructionupdate}" z="LmMLrZwA2eBrXQgtbLWSufu8GpY="/>
+        <field:display field="actualunitsbuilt" id="s_com_accoord_domain_ConstructionUpdate_actualunitsbuilt" object="${constructionupdate}" z="Ohu29bsHRe1ZCwKtfUOaClob+Vg="/>
+        <field:display field="note" id="s_com_accoord_domain_ConstructionUpdate_note" object="${constructionupdate}" z="nfEXGtzBgl8lxuLoW5k1q8ZetXM="/>
+        <field:display field="project" id="s_com_accoord_domain_ConstructionUpdate_project" object="${constructionupdate}" z="n8lIg1HdezGX9PDFFf9o/rvPH0A="/>
+    </page:show>
+</div>

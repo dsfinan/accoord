@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_accoord_domain_OrgProfile" object="${orgprofile}" path="/orgprofiles" z="d8ez5Gad80ApTUygGRYeEN/F/Y0=">
+        
+        <field:display field="about" id="s_com_accoord_domain_OrgProfile_about" object="${orgprofile}" z="iWFFNnnHFLZvpvFKRCHE2GSKyYQ="/>
+        <field:display field="orglogo" id="s_com_accoord_domain_OrgProfile_orglogo" object="${orgprofile}" z="4PFrfZW4Lx95bLY5/mn2Trr+1bs="/>
+        <field:display field="website" id="s_com_accoord_domain_OrgProfile_website" object="${orgprofile}" z="epsuwlGS6FiwoIbYvuMcPcOZCCg="/>
+        <field:display field="messages" id="s_com_accoord_domain_OrgProfile_messages" object="${orgprofile}" z="HknygarxOheOCD8vrCQiU26Jnx8="/>
+    
+ </page:show>
+</div>

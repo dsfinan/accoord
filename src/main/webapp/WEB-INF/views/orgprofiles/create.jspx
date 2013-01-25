@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_accoord_domain_OrgProfile" modelAttribute="orgProfile" path="/orgprofiles" render="${empty dependencies}" z="kBHoLvxm/KlLYQwxiGufkJWl4zE=">
+        
+        <field:textarea field="about" id="c_com_accoord_domain_OrgProfile_about" z="zvVquE6TdGIpyOmgOtqM/49oa/I="/>
+        <field:textarea field="orglogo" id="c_com_accoord_domain_OrgProfile_orglogo" z="/vdhA3kcuU8KSbTjiBkFnGMp31U="/>
+        <field:input field="website" id="c_com_accoord_domain_OrgProfile_website" z="Gg0Md/WkKt+KvvDNvE/2EYWCXxg="/>
+        <field:simple field="messages" id="c_com_accoord_domain_OrgProfile_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="oxC2kBuaoFr9cOkbtRsyIvrjpaE="/>
+    
+   </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_accoord_domain_OrgProfile" render="${not empty dependencies}" z="4Rl4oQJOGxsjv5sqDYHaJhhb42o="/>
+</div>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:maps="urn:jsptagdir:/WEB-INF/tags/map" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:sec="http://www.springframework.org/security/tags" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+ 
+	
+
+     <page:show id="ps_com_accoord_domain_Event" object="${event}" path="/events" z="v6eWCBd3emBBT1WKWGgfGOgS95U=">
+        	<field:display field="name" id="s_com_accoord_domain_Event_name" object="${event}" z="UvNypVGZxTkC8hmKxgszUj6Hdco="/>
+        	<field:display field="description" id="s_com_accoord_domain_Event_description" object="${event}" z="Ldd2mVxKbZeQ3z/CDfLySI/H+zw="/>
+        	<field:display field="country" id="s_com_accoord_domain_Event_country" object="${event}" z="NKvbtuvmDo1YMoy7sgEjz08i2/I="/>
+        	<field:display field="eventtype" id="s_com_accoord_domain_Event_eventtype" object="${event}" z="KywUlDSnHGhVcJUp62gE09dS78Q="/>
+			<field:display field="lat" id="s_com_accoord_domain_Event_lat" object="${event}" z="fxrEJDWEO+ce0dSIa7QdrC9ygec="/>
+    		<field:display field="lng" id="s_com_accoord_domain_Event_lng" object="${event}" z="sG75Vw4pSEycCSBFuZKn0F52j0g="/>
+    		<field:display field="zoomlevel" id="s_com_accoord_domain_Event_zoomlevel" object="${event}" z="2MIP/e9cGmA2iSZXyAdUG24dLCk="/>    		
+     		<field:display field="open" id="s_com_accoord_domain_Event_open" object="${event}" z="tyZjWocDWKAqfIXCaInkmohxOCo="/>
+     		<field:display date="true" dateTimePattern="${event_created_date_format}" field="created" id="s_com_accoord_domain_Event_created" object="${event}" z="Yke5dbyyuJEGuv/fd6Z08/2t9ps="/>
+
+    		<field:display date="true" dateTimePattern="${event_dateclosed_date_format}" field="dateclosed" id="s_com_accoord_domain_Event_dateclosed" object="${event}" z="8QcsCvb+NQGcaLK5q4jRGkPo1sw="/>
+    		
+    		<field:display field="owner" id="s_com_accoord_domain_Event_owner" object="${event}" z="8RgWX5GGyOOEQzIF1ytFFqRzfG8="/>
+    		<field:display field="assessmentareas" id="s_com_accoord_domain_Event_assessmentareas" object="${event}" z="1qRie4XH7yeElPNg6xrjU/w1nnU="/>
+    		<field:display field="serviceareas" id="s_com_accoord_domain_Event_serviceareas" object="${event}" z="utum2TgmTxJA3awPryK5sY9TJ6k="/>
+    		<field:display field="securityincidents" id="s_com_accoord_domain_Event_securityincidents" object="${event}" z="s3nVhLpFUEDmxFKf+ctWfhJ1HVo="/>
+
+    		<field:display field="messages" id="s_com_accoord_domain_Event_messages" object="${event}" z="wqDpxMByFPBJZueEcgy+zS9WT1E="/>
+       </page:show>
+
+  
+    
+</div>

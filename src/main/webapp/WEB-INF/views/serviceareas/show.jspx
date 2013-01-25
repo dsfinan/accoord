@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+		xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+		xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:jsp="http://java.sun.com/JSP/Page" 
+		xmlns:maps="urn:jsptagdir:/WEB-INF/tags/map" 
+		xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+		xmlns:sec="http://www.springframework.org/security/tags" 
+		xmlns:spring="http://www.springframework.org/tags" 
+		xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+ 		<c:set scope="page" value="${servicearea.id}" var="serviceareaId"/>   
+    
+     	<c:set value="/trainings?form" var="createTrainingPath"/>
+		<spring:url value="${createTrainingPath}" var="create_training_url"/>    
+     	<c:set value="/distributions?form" var="createDistributionPath"/>
+		<spring:url value="${createDistributionPath}" var="create_distribution_url"/>    
+		<c:set value="/equipments?form" var="createEquipmentPath"/>
+		<spring:url value="${createEquipmentPath}" var="create_equipment_url"/>        
+     	<c:set value="/constructionprojects?form" var="createConstructionPath"/>
+		<spring:url value="${createConstructionPath}" var="create_construction_url"/>  
+		
+		
+		<c:if test="${pageContext['request'].userPrincipal != null}">    
+	    	<sec:authentication property="principal.userObject.id" var="userId"/>
+	    	<sec:authentication property="principal.userObject.firstname" var="userFirstName"/>
+	    	<sec:authentication property="principal.userObject.firstname" var="userLastName"/>
+	    	    	<!--  Set the event to session variables, every visit resets the variable -->
+	    	<c:set scope="page" value="true" var="isAuthenticated"/>
+		</c:if>
+ 
+		      
+    
+<script type="text/javascript">
+
+
+// set the inital map variables for full scope
+var map;
+var latlng = new google.maps.LatLng(${servicearea.lastlat},${servicearea.lastlng});
+var zoom = ${servicearea.lastzoomlevel};
+var polyPath = "${servicearea.polygon}";
+var serviceareaId = ${serviceareaId};
+var isAuthenticated = '${isAuthenticated}';  //TODO put in rendered JSP - this is bad security
+
+$(document).ready(function(){
+
+	if (isAuthenticated == "true"){
+		buildMsgForm();
+		}
+
+	
+
+	//build map
+	
+    var myOptions = {
+    	    zoom: zoom,
+    	    center: latlng,
+    	    panControl: false,
+    	    streetViewControl: false,
+    	    draggable: false,
+			zoomControl: false,
+			scrollwheel: false,
+    	    mapTypeId: google.maps.MapTypeId.TERRAIN 
+    	    };
+    	    
+    	        map = new google.maps.Map(document.getElementById('map_canvas'),
+    	        myOptions);
+    	        
+    	        
+    			//parse out lat lngs
+    			pointHolder = [];
+    			pathHolder = [];
+    			points = polyPath;
+    			points = points.replace(/[\)]/g, "");
+    			points = points.split("(");
+    			
+    			//check for blanks, if not blank put into array
+    			
+    			$.each(points, function(key, point) {
+    				if (point != ""){
+    									
+    					//split the points by the comma
+    					pointsArray = point.split(',');
+    					lat = pointsArray[0];
+    					lng = pointsArray[1];
+    					latLng = new google.maps.LatLng(lat, lng);
+    					pathHolder.push(latLng);
+    					
+    					}
+    				
+    			});
+
+    	
+    			assessmentPoly = new google.maps.Polygon({
+    				path: pathHolder,
+    				clickable: false,
+    				strokeColor: '#415776',
+    				strokeOpacity: 0.8,
+    				strokeWeight: 3,
+    				fillColor: '#415776',
+    				fillOpacity: 0.5,
+    				map: map}); 
+    	        
+    			
+  	    	  //get assessment
+  	    	  $.getJSON("/ajax/returnServiceArea", {id: +serviceareaId}, function(servicearea) {
+  	    	      if (servicearea != null) {
+  	    	    	
+  	    	    	
+  	    	    	if (servicearea.messages != null) {
+  	    	    		updateMessages(servicearea.messages);
+  	    	        }
+  	    	    	
+  	    	    	
+  					//drawAssessmentDashboard(assessment);
+  	    	    	
+  	    	      }else{
+  	    	    	  alert('No data');
+  	    	            }
+  	    	  });       
+  	    	        
+  			
+    			
+    			
+    			
+    			
+    	
+});
+    			
+function buildMsgForm(){
+	msgForm = document.getElementById('msgForm');
+	//hide the msg form
+	$("#msgDiv").hide();
+
+
+	//messaging...build text area and submit elements dynamicly
+
+	    messageTextArea = document.createElement("input");
+	  	messageTextArea.setAttribute("name", "msg");
+		messageTextArea.setAttribute("id", "msg");
+		messageTextArea.setAttribute("cols", "100");
+		messageTextArea.setAttribute("type", "textarea");
+		//messageTextArea. add text
+	  	messagesubmit = document.createElement("input");
+	  	messagesubmit.setAttribute("name", "submitPost");
+	  	messagesubmit.setAttribute("type", "submit");
+	  	messagesubmit.setAttribute("value", "Post");
+	  	//add to the DOM 
+	  	$("#msgForm").append(messageTextArea);
+	  	$("#msgForm").append(messagesubmit);
+
+	  	//make textarea resizable
+	  	$("msg").resizable({handles: "se"});
+	  	Spring.addDecoration(new Spring.ElementDecoration({elementId : 'msg', widgetType: "dijit.form.Textarea",widgetAttrs: { promptMessage : "Help Coordinate and Share Information." }})); 
+	}
+    		
+    			
+    			
+    			
+</script>  
+
+<div id="greeting" style="width:600px; padding:2px">  
+
+
+	<div id="breadcrumbs" style="padding:5px">  
+	<a alt="Accoord" href="${fn:escapeXml(system_url)}" title="Accoord">Home</a>
+	<c:out value=" &gt;&gt; "/>
+	<b>Event:</b>
+	<c:out value=" "/>
+	<a alt="Accoord" href="${fn:escapeXml(system_url)}/${sessionEventId}" title="Accoord">${toCoverageEventName}</a>
+	<c:out value=" "/>
+	<b>Service Area:</b>
+	${servicearea.name}
+	</div> 
+
+
+</div>  
+
+
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" style="font-family:arial,helvetica,sans-serif;" width="100%">
+<tbody>
+
+
+
+
+	<tr>
+		<td valign="top" width="500px">
+		
+		
+	<util:panel id="serviceShowMap" title="Service Area: ${servicearea.name}">
+	
+			<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="menu_bar" style="padding:10px;">
+	
+    			<b>Create:</b>
+    			<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_distribution_url)}" id="createDistributionDialog" title="Do a Distribution">Distribution</a>
+				<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_equipment_url)}" id="createEquipmentDialog" title="Place Equipment">Position Equipment</a>
+				<c:out value=" "/>
+    			<a class="myButton" href="${fn:escapeXml(create_contruction_url)}" id="createConstructionDialog" title="Construction Project">Construction Project</a>
+				<c:out value=" "/>
+				<a class="myButton" href="${fn:escapeXml(create_training_url)}" id="createTrainingDialog" title="Record a Training">Training Event</a>
+				<script type="text/javascript">Spring.addDecoration(new Spring.AjaxEventDecoration({elementId: createTrainingDialog, parent: this, event: "onclick",popup: createTrainingDialog,params: {fragments:"body"}}));</script>
+				<c:out value=" "/>								
+ 				</div>
+			</sec:authorize>
+			
+			
+    	<div id="map_canvas" style="width:500px; height:400px; margin-left: auto; margin-right: auto"/>
+	
+		
+	</util:panel>
+
+		<sec:authorize access="hasAnyRole('SUPER_ADMIN','ORG_ADMIN','USER')">
+				<div id="msg_bar" style="padding:10px; background: #DCDCDC; margin-top: 10px">
+	
+    			<b>Coordinate:</b>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('update');" title="Post an Update">Post an Update</a>
+				<c:out value=" "/>
+				<a class="myButton" href="javascript:showMsgForm('photo');" title="Post a Photo">Post a Photo</a>
+    			<c:out value=" "/>
+    			<a class="myButton" href="javascript:showMsgForm('file');" title="Attach a File">Attach a File</a>
+    
+ 				</div>
+			
+			
+			<div id="msgDiv" class="msgform" style="padding:10px; background: #DCDCDC">
+			
+				<form id="MsgForm">
+				
+				    <input type="hidden" name="authorId" value="${userId}" />
+				    <input type="hidden" name="serviceAreaId" value="${serviceareaId}" />
+				
+				</form>
+			</div>
+			<script type="text/javascript">
+			
+			$('#MsgForm').submit(function(e) {
+				  
+				// stop form from submitting normally
+			    e.preventDefault();  
+				
+			    var msg = $(this).serialize();
+			    $.getJSON(rootPath+"/ajax/addServiceMsg", msg, function(data) {
+				
+							  //call the event and pass the new messages to js fuction
+							$.getJSON(rootPath+"/ajax/returnServiceArea", {id: +serviceareaId}, function(servicearea) {
+								      if (servicearea != null) {
+								    	
+								    	if (servicearea.messages != null) {
+								    		
+								    		updateMessages(servicearea.messages);
+								        }
+								      }else{
+								    	  alert('No data');
+								            }
+							});  
+			    	
+			    	
+				 });
+
+			    //hide the div
+			    $("#msgDiv").hide();
+			    //clear the text box
+			    $("#msg").text('');
+			    return false;
+			    
+			    
+				
+			});
+			
+			</script>
+			<div name ="spacer"></div>
+			<div id="messages"></div>
+		</sec:authorize>
+
+
+
+
+
+
+		
+		</td>
+		
+
+<td valign="top">    
+
+<h4>Dash Baord</h4>    
+
+Under Development
+
+</td>
+</tr>
+</tbody>
+</table>    
+
+
+<div style="width:1000px; padding:10px">
+  <sec:authorize ifAllGranted="SUPER_ADMIN">
+
+    
+    <page:show id="ps_com_accoord_domain_ServiceArea" object="${servicearea}" path="/serviceareas" z="sZrFoTd1hv+8XfDq//tUCPturrk=">
+        <field:display field="name" id="s_com_accoord_domain_ServiceArea_name" object="${servicearea}" z="cnYLWfXMGYlv9dRFzt7FIHmxVck="/>
+        <field:display field="description" id="s_com_accoord_domain_ServiceArea_description" object="${servicearea}" z="KoZNzpZzk1IJoZ31LpRFiG6OnYY="/>
+        <field:display date="true" dateTimePattern="${serviceArea_created_date_format}" field="created" id="s_com_accoord_domain_ServiceArea_created" object="${servicearea}" z="45e+Qx/yjmcH+wp4S4Cl29uP8Qg="/>
+        <field:display field="polygon" id="s_com_accoord_domain_ServiceArea_polygon" object="${servicearea}" z="zTNIiQLowe3sd4/OJh822xGXEvU="/>
+   
+    <field:display field="event" id="s_com_accoord_domain_ServiceArea_event" object="${servicearea}" z="q8SaXh1POVAFuh94Ppjn86vysYw="/>
+    <field:display field="equipment" id="s_com_accoord_domain_ServiceArea_equipment" object="${servicearea}" z="Kxt5mLKyWPeEwJnuxo5+dMT15Xw="/>
+    
+    <field:display field="trainings" id="s_com_accoord_domain_ServiceArea_trainings" object="${servicearea}" z="S18CQh4hx/EawsnujAk7j3GLZlg="/>
+    <field:display field="owner" id="s_com_accoord_domain_ServiceArea_owner" object="${servicearea}" z="y62cVnU+4L4wQ1mq9EVjK7G19fw="/>
+    <field:display field="lastlat" id="s_com_accoord_domain_ServiceArea_lastlat" object="${servicearea}" z="e8HOlBarv+sZlLirSif93BnnBK8="/>
+        <field:display field="lastlng" id="s_com_accoord_domain_ServiceArea_lastlng" object="${servicearea}" z="DweYceStBoyD8vRxsB42grJqXew="/>
+        <field:display field="lastzoomlevel" id="s_com_accoord_domain_ServiceArea_lastzoomlevel" object="${servicearea}" z="JXeIMIO2yIEbedSxwDcDrZc29Mc="/>
+        <field:display field="shelterprojects" id="s_com_accoord_domain_ServiceArea_shelterprojects" object="${servicearea}" z="1Ra8bZDxq2sHmDGKjcyaDHxPEuQ="/>
+    <field:display field="constructionprojects" id="s_com_accoord_domain_ServiceArea_constructionprojects" object="${servicearea}" z="tTJAOJ9159EUfL0NHKW9jg4QAUU="/>
+                    <field:display field="distributions" id="s_com_accoord_domain_ServiceArea_distributions" object="${servicearea}" z="Q3M27FI1m//4YBAH5gp6KXY9Zkk="/>
+                    <field:display field="messages" id="s_com_accoord_domain_ServiceArea_messages" object="${servicearea}" z="UtOBATFrYibgEKMPb4Mgq3p7IZ8="/>
+                    </page:show>
+ 	</sec:authorize>
+</div>   
+
+   
+    
+</div>

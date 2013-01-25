@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_UserProfile" items="${userprofiles}" z="3kuWe5A5JBexCaPTKRxVVz9msmo=">
+        <table:table data="${userprofiles}" id="l_com_accoord_domain_UserProfile" path="/userprofiles" z="f6OcxhS1/gFU2lG1TgmAkYjy1Gw=">
+            
+            <table:column id="c_com_accoord_domain_UserProfile_profilepicture" property="profilepicture" z="zas7sv6jiZt3XDz9SZV/NY+1PiY="/>
+            <table:column id="c_com_accoord_domain_UserProfile_bio" property="bio" z="T97LqKEDwoAqHBxDhA5KK/ciFIM="/>
+            <table:column id="c_com_accoord_domain_UserProfile_skype" property="skype" z="SOQ9omeCrdeNUQshT7/SCwuyGAY="/>
+            <table:column id="c_com_accoord_domain_UserProfile_twitter" property="twitter" z="S15UQGzXT/rI7ivzVbJn0TW+Uok="/>
+            <table:column id="c_com_accoord_domain_UserProfile_linkedin" property="linkedin" z="FdrU2NxkFcyYLqiizH4cofujewc="/>
+
+        </table:table>
+    </page:list>
+</div>

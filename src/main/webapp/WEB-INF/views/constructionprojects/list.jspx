@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_ConstructionProject" items="${constructionprojects}" z="pWiWc1DqM/ccrEPN/n3athCfefA=">
+        <table:table data="${constructionprojects}" id="l_com_accoord_domain_ConstructionProject" path="/constructionprojects" z="Qd5ogVsisgMJt11VJgcxCFvOElI=">
+            <table:column id="c_com_accoord_domain_ConstructionProject_createddate" property="createddate" z="6Sk5EMtklotXX9jbFM5J+jio+1E="/>
+            <table:column id="c_com_accoord_domain_ConstructionProject_owner" property="owner" z="6FQkuzxU2HGYz7wEcp5tGI5R3yQ="/>
+            
+            <table:column id="c_com_accoord_domain_ConstructionProject_sheltertype" property="sheltertype" z="/UqFruS0jk8IuH7F0u7fIEsFTb0="/>
+            <table:column id="c_com_accoord_domain_ConstructionProject_description" property="description" z="FS6QSyoq14KyGGOvX14M3/vvGKY="/>
+            <table:column id="c_com_accoord_domain_ConstructionProject_estimatedstartdate" property="estimatedstartdate" z="9doEzfhRBAB7aIfTVTcZE6u2+1A="/>
+        
+        <table:column id="c_com_accoord_domain_ConstructionProject_constructiontype" property="constructiontype" z="D456AminEsCrymEQ5kq9CfdkLIM="/>
+        </table:table>
+    </page:list>
+</div>

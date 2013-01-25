@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_ConstructionUpdate" items="${constructionupdates}" z="6xk8/sX+NrOxboI7aTMfI1GJ8js=">
+        <table:table data="${constructionupdates}" id="l_com_accoord_domain_ConstructionUpdate" path="/constructionupdates" z="pxmnx9IJVgq1LnZlXoaqlUNi9RI=">
+            <table:column id="c_com_accoord_domain_ConstructionUpdate_updated" property="updated" z="UcCjxNG044RfgNznzmV8IH3C9L4="/>
+            <table:column id="c_com_accoord_domain_ConstructionUpdate_owner" property="owner" z="/DBhbVUuNmKbd9DMMsmk0fpAUVQ="/>
+            <table:column id="c_com_accoord_domain_ConstructionUpdate_actualunitsbuilt" property="actualunitsbuilt" z="xnp8ww0dKuZoGe1lUEMBwCUT+40="/>
+            <table:column id="c_com_accoord_domain_ConstructionUpdate_note" property="note" z="e+OlHQj1etdJJ1WceeXq/rVXN2Q="/>
+            <table:column id="c_com_accoord_domain_ConstructionUpdate_project" property="project" z="E3Aih4w7GjDMnWUSTLN/Y8fiksg="/>
+        </table:table>
+    </page:list>
+</div>

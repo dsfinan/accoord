@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_accoord_domain_Organization" items="${organizations}" z="UEuXo52nzHXABTvVeCCtCKH1VoY=">
+        <table:table data="${organizations}" id="l_com_accoord_domain_Organization" path="/organizations" z="FW2FJKb3/uyROpHm6WYKfM9QU10=">
+            
+            
+        <table:column id="c_com_accoord_domain_Organization_name" property="name" z="jQ415JG0qc35mZ6fIiaxY4VzOJQ="/>
+            <table:column id="c_com_accoord_domain_Organization_admin" property="admin" z="feXpyK69NBBoEnqT072U7tSIrj8="/>
+        </table:table>
+    </page:list>
+</div>
